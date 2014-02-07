@@ -15,4 +15,4 @@ Next
 
 * Follow the [Implementation Guide](implementation.md)
 * Browse [Screenshots](screenshots.md)
-* Browse [Examples](examples.md)
+* Browse [Examples](demos.md)

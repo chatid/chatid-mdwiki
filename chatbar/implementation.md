@@ -44,6 +44,6 @@ And then add an HTML container with an id of `chatid-cta`:
 ```
 
 ## Next
-* Browse [Examples](examples.md)
+* Browse [Examples](demos.md)
 * Read the [API Overview](public-api-overview.md)
 * Explore the [API Reference](public-api-reference.md)
