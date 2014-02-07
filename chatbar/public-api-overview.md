@@ -27,13 +27,17 @@ The Experts List (also known as the Buddy List) is a panel within Chatbar that d
 the experts available for chat. Upon starting a chat, the expert will remain
 in the List for the duration of the user's session.
 
+![](./assets/screens/screen11.png "Experts List with just one ChatID (Acer)")
+
 As a user browses your website, the List may update to display relevant experts. Chatbar
 provides a few strategies for performing these updates.
 
 If you know the unique string which identifies the expert, you may simply call `addChatId`. `chatid` may be just the string, or an object with a `chatid` field:
 
 ```javascript
-CID.q.push(['addChatId', 'acer'], ['addChatId', { chatid: 'seagate' }]);
+CID.q.push(['addChatId', 'acer']);
+// or
+CID.q.push(['addChatId', { chatid: 'acer' }]);
 ```
 
 Perhaps the simplest way to populate the Experts List from a retail website is to use the
@@ -48,6 +52,8 @@ CID.q.push(['addProduct', {
   price: 499.99
 }]);
 ```
+
+**NOTE:** brand mapping is only available *after* ChatID has configured your embed code and only for mapping ChatID-enabled brands.
 
 *Reference*: [addChatId](public-api-reference.md#addChatId), [addProduct](public-api-reference.md#addProduct)
 
