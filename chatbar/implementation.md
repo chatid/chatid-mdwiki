@@ -1,7 +1,7 @@
 Implementation
 ==============
 
-> [Home](index.md) ▸ **Overview** ▸ **Implementation**
+> [Home](index.md) ▸ [Overview](index.md#Overview) ▸ **Implementation**
 
 To get started, add your Chatbar embed code to all pages. Your embed code looks like the following, with `example.js` swapped for your company's identifier:
 

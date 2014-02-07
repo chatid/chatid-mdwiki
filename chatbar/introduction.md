@@ -1,7 +1,7 @@
 Introduction
 ============
 
-> [Home](index.md) ▸ **Overview** ▸ **Introduction**
+> [Home](index.md) ▸ [Overview](index.md#Overview) ▸ **Introduction**
 
 Chatbar is a flexible, interactive JavaScript component for connecting to the ChatID Network from any website. It was designed to accomplish the following goals:
 

@@ -1,7 +1,7 @@
 Public API Reference
 ====================
 
-> [Home](index.md) ▸ [Public API](public-api-overview.md) ▸ **Reference**
+> [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Reference**
 
 * [addChatId](public-api-reference.md#addChatId) - add a chatid to the Experts List
 * [addChannel](public-api-reference.md#addChannel) - add a channel to the Experts List

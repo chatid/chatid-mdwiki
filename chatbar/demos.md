@@ -1,7 +1,7 @@
 Demos
 =====
 
-> [Home](index.md) ▸ **Examples** ▸ **Demos**
+> [Home](index.md) ▸ [Examples](index.md#Examples) ▸ **Demos**
 
 ## Add experts by adding products
 

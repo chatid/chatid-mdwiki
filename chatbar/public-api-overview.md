@@ -1,7 +1,7 @@
 Public API Overview
 ===================
 
-> [Home](index.md) ▸ [Public API](public-api-overview.md) ▸ **Overview**
+> [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Overview**
 
 For further documentation, please visit the [complete API reference](public-api-reference.md).
 
