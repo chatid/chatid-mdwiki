@@ -1,6 +1,6 @@
 {
   "useSideMenu": true,
   "lineBreaks": "original",
-  "additionalFooterText": "<img src='/assets/logo.png' style='display:inline-block;margin-bottom:10px' /><br />All content and images &copy; ChatID Inc. 2014<br />",
+  "additionalFooterText": "<img src='assets/logo.png' style='display:inline-block;margin-bottom:10px' /><br />All content and images &copy; ChatID Inc. 2014<br />",
   "anchorCharacter": "#"
 }
