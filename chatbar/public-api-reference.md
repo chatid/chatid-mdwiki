@@ -73,7 +73,7 @@ CID.q.push(['addCTA', {
   chatid: 'chatid.echo',
   container: 'chatid-cta',
   settings: {
-    template: "<button class='chatid-cta'>Chat with <%= this.label %></button>"
+    template: "<button data-ref='button'>Chat with <%= this.label %></button>"
   }
 }]);
 ```

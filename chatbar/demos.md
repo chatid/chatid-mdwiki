@@ -32,7 +32,7 @@ CID.q.push(['addCTA', {
   chatid: 'chatid.echo',
   container: '#chatid-cta',
   settings: {
-    template: "<button class='chatid-cta'>Chat with <%= this.label %></button>"
+    template: "<button data-ref='button'>Chat with <%= this.label %></button>"
   }
 }]);
 </script>
@@ -53,7 +53,7 @@ CID.q.push(['mapBrand', 'Acer', function(chatid) {
     chatid: chatid,
     container: '#chatid-cta',
     settings: {
-      template: "<button class='chatid-cta' data-ref='button'>Chat with <%= this.label %></button>"
+      template: "<button data-ref='button'>Chat with <%= this.label %></button>"
     }
   }]);
 }]);
