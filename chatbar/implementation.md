@@ -24,7 +24,7 @@ After adding your Chatbar embed code to all pages, there are just 2 additional s
 * Add calls to action (CTAs)
 * Populate the Experts List
 
-Chatbar creates a single global variable (`CID`), which exposes a [public API](public-api-overview.md). Add the following API calls so you may begin chatting with the Echo, the friendly ChatID Robot:
+Both can be accomplished using Chatbar's [public API](public-api-overview.md). Add the following API calls so you may begin chatting with the Echo, the friendly ChatID Robot:
 
 ```javascript
 CID.q.push(['addChatId', 'chatid.echo']);
@@ -32,7 +32,7 @@ CID.q.push(['addCTA', {
   chatid: 'chatid.echo',
   container: '#chatid-cta',
   settings: {
-    template: "<button class='chatid-cta' data-ref='button'>Chat with Echo</button>"
+    template: "<button data-ref='button'>Chat with Echo</button>"
   }
 }]);
 ```
@@ -42,6 +42,10 @@ And then add an HTML container with an id of `chatid-cta`:
 ```
 <div id='chatid-cta'></div>
 ```
+
+And that's it! Open the HTML page and fire off a test chat, it should appear similar to [this demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-echo/index.html).
+
+**NOTE:** The HTML page must be served by a webserver for chat to work properly. For debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
 
 ## Next
 * Browse [Examples](demos.md)

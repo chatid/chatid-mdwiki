@@ -61,7 +61,7 @@ Configuring CTAs
 ----------------
 
 Chatbar does not appear on your website until the user clicks a call to action (CTA). To
-add CTAs to your page, simply use the `addCTA` API method:
+add CTAs to your page, use the `addCTA` API method:
 
 ```javascript
 CID.q.push(['addCTA', {
@@ -79,7 +79,7 @@ Logging Events
 --------------
 
 Chatbar can integrate with your existing tracking system using the `hookEvents` API call.
-Simply provide an object which implements the following sample interface:
+Pass an object that implements the following sample interface:
 
 ```javascript
 CID.q.push(['hookEvents', {
@@ -89,9 +89,11 @@ CID.q.push(['hookEvents', {
   trackEvent: function(data) {
     data = data || {};
     var code = data.code, csid = data.csid;
-    if (code && csid) _gaq.push(['_trackEvent', this.codeMap[code], csid]);
+    if (code && csid) _gaq.push(['_trackEvent', code, csid]);
   }
 }])
 ```
+
+`codeMap` is a hash for mapping Chatbar-specific events to those relevant to your tracking purposes. Currently, please configure this mapping with support from a ChatID engineer. In the future, all available events will be made documented publically for independent use.
 
 *Reference*: [hookEvents](public-api-reference.md#hookEvents)
