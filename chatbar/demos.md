@@ -5,7 +5,7 @@ Demos
 
 ## Add experts by adding products
 
-In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the `template` field may be an EJS template to display the brand name dynamically.
+In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the `template` field may be an EJS template for displaying the brand name dynamically.
 
 ```
 <div id='chatid-cta'></div>

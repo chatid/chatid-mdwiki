@@ -49,7 +49,7 @@ CID.q.push(['**addCTA**', *cta*]
 
 `cta` should be an object with `chatid`, `container`, and `settings` fields.
 
-* `chatid` must be the unique string with which this CTA is connected.
+* `chatid` must be the unique brand identifier to which this CTA is tied.
 * `container` may be a DOM element or a jQuery selector string.
 * `settings` should be an object with a `template` field.
 * `template` must be a string of HTML to inject within `container`. It may also be a
@@ -58,14 +58,14 @@ will be rendered with the following metadata for its context:
 
 ```javascript
 {
-  active: false,
-  available: true,
-  label: 'Acer',
-  channel: false
+  active: false, // whether the user already has an active conversation with this `chatid`
+  available: true, // whether any agents are available
+  label: 'Acer', // presentable display name for this `chatid`
+  channel: false // boolean to specify if this chatid is owned by the hosting channel
 }
 ```
 
-In the following example we append a CTA some element with `product-details` for its ID,
+In the following example we append a CTA to some element with an ID of `product-details`,
 using dynamic text within the button:
 
 ```javascript
@@ -79,3 +79,5 @@ CID.q.push(['addCTA', {
   }
 }])
 ```
+
+[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
