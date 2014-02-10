@@ -65,15 +65,13 @@ will be rendered with the following metadata for its context:
 }
 ```
 
-In the following example we append a CTA to some element with an ID of `product-details`,
+In the following example we append a CTA to some element with an ID of `chatid-cta`,
 using dynamic text within the button:
 
 ```javascript
-var container = document.createElement('div');
-document.getElementById('product-details').appendChild(container);
 CID.q.push(['addCTA', {
-  chatid: 'acer',
-  container: container,
+  chatid: 'chatid.echo',
+  container: 'chatid-cta',
   settings: {
     template: "<button class='chatid-cta'>Chat with <%= this.label %></button>"
   }
