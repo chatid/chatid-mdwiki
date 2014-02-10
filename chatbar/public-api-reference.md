@@ -87,7 +87,7 @@ Logging Events
 
 #### log
 
-CID.q.push(['**log**', *eventName*, *args...*]);
+CID.q.push(['**log**', *eventName*, *args...*])
 
 `eventName` will be the key for which this unique behavior will be indexed. `args` may be
 any number of additional arguments relevant to the event.
@@ -96,18 +96,18 @@ Here is an example using the `log` method to send Chatbar a conversion event:
 
 ```javascript
 CID.q.push([
-  'log', // first param is the API method, in this case it's 'log'
-  'conversion', // second param is first argument to the 'log' method, in this case it's 'conversion'
-  [{ // third param is the second argument to the 'log' method, in this case it's an array of product objects that were purchased
+  'log', // 1st param is the API method, in this case it's 'log'
+  'conversion', // 2nd param is first argument to the 'log' method, in this case it's 'conversion'
+  [{ // 3rd param is the 2nd argument to the 'log' method, in this case, an array of products purchased
     brand: 'Acer',
     sku: '123456',
     name: 'Aspire A7',
-    price: '349.99'
+    price: 349.99
   }, {
     brand: 'Seagate',
     sku: '654321',
     name: '500GB External HDD',
-    price: '43.99'
+    price: 43.99
   }]
 ]);
 ```

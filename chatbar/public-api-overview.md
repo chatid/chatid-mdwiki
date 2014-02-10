@@ -85,12 +85,12 @@ CID.q.push(['log', 'conversion', [{
     brand: 'Acer',
     sku: '123456',
     name: 'Aspire A7',
-    price: '349.99'
+    price: 349.99
   }, {
     brand: 'Seagate',
     sku: '654321',
     name: '500GB External HDD',
-    price: '43.99'
+    price: 43.99
   }, ... ]
 ]);
 ```
