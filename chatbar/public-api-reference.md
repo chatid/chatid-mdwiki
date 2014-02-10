@@ -79,29 +79,3 @@ CID.q.push(['addCTA', {
   }
 }])
 ```
-
-
-Event Logging
--------------
-
-#### hookEvents
-
-CID.q.push(['**hookEvents**', *customLogger*]
-
-Capture Chatbar events.
-
-`customLogger` must be an object with a `codeMap` object and a `trackEvent` method.
-Here is an example `customLogger` hooking events for Google Analytics:
-
-```javascript
-CID.q.push(['hookEvents', {
-  codeMap: {
-    'cta_click': 'chatid_cta_click'
-  },
-  trackEvent: function(options) {
-    data = data || {};
-    var code = data.code, csid = data.csid;
-    if (code && csid) _gaq.push(['_trackEvent', this.codeMap[code], csid]);
-  }
-}]);
-```

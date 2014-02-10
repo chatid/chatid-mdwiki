@@ -74,26 +74,3 @@ CID.q.push(['addCTA', {
 ```
 
 *Reference*: [addCTA](public-api-reference.md#addCTA)
-
-Logging Events
---------------
-
-Chatbar can integrate with your existing tracking system using the `hookEvents` API call.
-Pass an object that implements the following sample interface:
-
-```javascript
-CID.q.push(['hookEvents', {
-  codeMap: {
-    'cta_click': 'chatid_cta_click'
-  },
-  trackEvent: function(data) {
-    data = data || {};
-    var code = data.code, csid = data.csid;
-    if (code && csid) _gaq.push(['_trackEvent', code, csid]);
-  }
-}])
-```
-
-`codeMap` is a hash for mapping Chatbar-specific events to those relevant to your tracking purposes. Currently, please configure this mapping with support from a ChatID engineer. In the future, all available events will be made documented publically for independent use.
-
-*Reference*: [hookEvents](public-api-reference.md#hookEvents)
