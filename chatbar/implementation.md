@@ -43,9 +43,11 @@ And then add an HTML container with an id of `chatid-cta`:
 <div id='chatid-cta'></div>
 ```
 
-And that's it! Open the HTML page and fire off a test chat, it should appear similar to [this demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-echo/index.html).
+That's it! Open the HTML page and fire off a test chat. You should see something similar to [this demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-echo/index.html).
 
-**NOTE:** The HTML page must be served by a webserver for chat to work properly. For debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
+Hint: The HTML page must be served by a webserver for chat to work properly. For debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
+
+Note: While Echo the Robot is available for chat 24/7, experts in the ChatID Network may occasionally go offline, which will cause their CTAs to become hidden. To further understand how Chatbar handles availability, visit [Configuring CTAs](public-api-overview.md#Configuring_CTAs).
 
 #### Next
 
