@@ -16,7 +16,7 @@ CID.q.push(['mapBrand', 'Acer', function(chatid) {
     chatid: chatid,
     container: '#chatid-cta',
     settings: {
-      template: "<div data-ref='cta'><button class='chatid-cta' data-ref='button'>Chat with <%= this.label %></button></div>"
+      template: "<button class='chatid-cta' data-ref='button'>Chat with <%= this.label %></button>"
     }
   }]);
 }]);

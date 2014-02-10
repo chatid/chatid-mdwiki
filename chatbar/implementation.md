@@ -47,7 +47,8 @@ And that's it! Open the HTML page and fire off a test chat, it should appear sim
 
 **NOTE:** The HTML page must be served by a webserver for chat to work properly. For debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
 
-## Next
+#### Next
+
 * Browse [Examples](demos.md)
 * Read the [API Overview](public-api-overview.md)
 * Explore the [API Reference](public-api-reference.md)

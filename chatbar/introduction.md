@@ -10,8 +10,7 @@ Chatbar is a flexible, interactive JavaScript component for connecting to the Ch
 * Intuitive to navigate & accessible from any desktop browser
 * Simple to integrate
 
-Next
-----
+#### Next
 
 * Follow the [Implementation Guide](implementation.md)
 * Browse [Screenshots](screenshots.md)
