@@ -22,7 +22,7 @@ CID.q.push(['addCTA', {
 
 ## Provide a dynamic template for the CTA
 
-In this example, we generate the CTA message dynamically, referencing `this.label` from the template string.
+In this example, we generate the CTA message dynamically, referencing `this.label` from the template string. The `template` field may be an EJS template for displaying the brand name dynamically.
 
 ```
 <div id='chatid-cta'></div>
@@ -42,7 +42,7 @@ CID.q.push(['addCTA', {
 
 ## Add experts by mapping a brand's name to it's chatid
 
-In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the `template` field may be an EJS template for displaying the brand name dynamically.
+In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the use of a callback function for obtaining the result of the first API call: this is necessary because Chatbar loads asynchronously.
 
 ```
 <div id='chatid-cta'></div>
