@@ -40,7 +40,7 @@ CID.q.push(['addCTA', {
 
 [View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
 
-## Add experts by adding products
+## Add experts by mapping a brand's name to it's chatid
 
 In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the `template` field may be an EJS template for displaying the brand name dynamically.
 
