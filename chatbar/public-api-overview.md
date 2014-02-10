@@ -74,3 +74,25 @@ CID.q.push(['addCTA', {
 ```
 
 *Reference*: [addCTA](public-api-reference.md#addCTA)
+
+Logging Events
+--------------
+
+Sometimes it can be helpful to send Chatbar events to be correlated with a user's chat interactions. This can be done by passing any basic data to the `log` API method:
+
+```javascript
+CID.q.push(['log', 'conversion', [{
+    brand: 'Acer',
+    sku: '123456',
+    name: 'Aspire A7',
+    price: '349.99'
+  }, {
+    brand: 'Seagate',
+    sku: '654321',
+    name: '500GB External HDD',
+    price: '43.99'
+  }, ... ]
+]);
+```
+
+*Reference*: [log](public-api-reference.md#log)
