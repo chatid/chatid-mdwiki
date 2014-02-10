@@ -77,7 +77,7 @@ CID.q.push(['addCTA', {
   settings: {
     template: "<button class='chatid-cta'>Chat with <%= this.label %></button>"
   }
-}])
+}]);
 ```
 
 [View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)

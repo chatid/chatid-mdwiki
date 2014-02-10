@@ -24,7 +24,7 @@ After adding your Chatbar embed code to all pages, there are just 2 additional s
 * Add calls to action (CTAs)
 * Populate the Experts List
 
-Both can be accomplished using Chatbar's [public API](public-api-overview.md). Add the following API calls so you may begin chatting with the Echo, the friendly ChatID Robot:
+Both can be accomplished using Chatbar's [public API](public-api-overview.md). Add the following API calls so you may begin chatting with the Echo, the friendly ChatID robot:
 
 ```javascript
 CID.q.push(['addChatId', 'chatid.echo']);
@@ -37,7 +37,7 @@ CID.q.push(['addCTA', {
 }]);
 ```
 
-And then add an HTML container with an id of `chatid-cta`:
+And then add an HTML container with an ID of `chatid-cta`:
 
 ```
 <div id='chatid-cta'></div>
@@ -47,7 +47,7 @@ That's it! Open the HTML page and fire off a test chat. You should see something
 
 Hint: The HTML page must be served by a webserver for chat to work properly. For debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
 
-Note: While Echo the Robot is available for chat 24/7, experts in the ChatID Network may occasionally go offline, which will cause their CTAs to become hidden. To further understand how Chatbar handles availability, visit [Configuring CTAs](public-api-overview.md#Configuring_CTAs).
+Note: While Echo the robot is available for chat 24/7, experts in the ChatID Network may occasionally go offline, which will cause their CTAs to become hidden. To further understand how Chatbar handles availability, visit [Configuring CTAs](public-api-overview.md#Configuring_CTAs).
 
 #### Next
 
