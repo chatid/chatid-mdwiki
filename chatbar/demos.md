@@ -10,7 +10,7 @@ In this example, we populate the Experts List with Echo the ChatID robot.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['addChatId', 'chatid.echo']);
+CID.q.push(['addChatId', 'chatid.echo']); // optional as `addCTA` will do this for us.
 CID.q.push(['addCTA', {
   chatid: 'chatid.echo',
   container: '#chatid-cta'
@@ -27,7 +27,6 @@ In this example, we generate the CTA message dynamically, referencing `this.labe
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['addChatId', 'chatid.echo']);
 CID.q.push(['addCTA', {
   chatid: 'chatid.echo',
   container: '#chatid-cta',
@@ -42,13 +41,12 @@ CID.q.push(['addCTA', {
 
 ## Add experts by mapping a brand's name to it's chatid
 
-In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the use of a callback function for obtaining the result of the first API call: this is necessary because Chatbar loads asynchronously.
+In this example, we populate the Experts List by mapping a brand string to it's `chatid`. Then we add the chatid and corresponding CTA. Notice the use of a callback function for getting the result of the first API call to accommodate async flow:
 
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['mapBrand', 'Acer', function(chatid) {
-  CID.q.push(['addChatId', chatid]);
+CID.q.push(['mapBrand', 'ChatID', function(chatid) {
   CID.q.push(['addCTA', {
     chatid: chatid,
     container: '#chatid-cta',

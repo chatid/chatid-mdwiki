@@ -73,6 +73,8 @@ CID.q.push(['addCTA', {
 }]);
 ```
 
+`addCTA` will call `addChatId` internally if you haven't done so already.
+
 *Reference*: [addCTA](public-api-reference.md#addCTA)
 
 **NOTE:** CTAs will not display unless experts are online and available for chat. Currently, there is no mechanism for checking expert availability via the public API, so all configuration should be done with the awareness that CTAs tied to unavailable chatids will simply not appear.

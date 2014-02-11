@@ -65,6 +65,8 @@ will be rendered with the following metadata for its context:
 }
 ```
 
+`addCTA` will call `addChatId` internally if you haven't done so already.
+
 In the following example we append a CTA to some element with an ID of `chatid-cta`,
 using dynamic text within the button:
 
