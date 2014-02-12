@@ -1,4 +1,4 @@
-# ChatID MDWiki
+# ChatID Developer Center
 
 [Home](index.md)
 [Chatbar]()

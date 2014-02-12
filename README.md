@@ -1,5 +1,5 @@
-ChatID MDWiki
-=============
+ChatID Developer Center
+=======================
 
 Uses MDWiki to expose documentation publically. Currently used to document Chatbar's
 public API.
