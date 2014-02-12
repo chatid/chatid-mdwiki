@@ -4,7 +4,7 @@ Chatbar Documentation
 > **Home**
 
 Hello, thank you for visiting Chatbar Documentation. Here you will find guides about functionality, implementation, and the public API.
-![](assets/screens/screen02.png "Chatbar")
+![](chatbar/assets/screens/screen02.png "Chatbar")
 
 Contents
 --------
