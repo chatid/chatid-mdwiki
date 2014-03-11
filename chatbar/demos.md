@@ -10,9 +10,9 @@ In this example, we populate the Experts List with Echo the ChatID robot.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['addChatId', 'chatid.echo']); // optional as `addCTA` will do this for us.
+CID.q.push(['addChatId', 'demo.chatid.echo']); // optional as `addCTA` will do this for us.
 CID.q.push(['addCTA', {
-  chatid: 'chatid.echo',
+  chatid: 'demo.chatid.echo',
   container: '#chatid-cta'
 }]);
 </script>
@@ -28,7 +28,7 @@ In this example, we generate the CTA message dynamically, referencing `this.labe
 <div id='chatid-cta'></div>
 <script>
 CID.q.push(['addCTA', {
-  chatid: 'chatid.echo',
+  chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat with <%= this.label %></button>"

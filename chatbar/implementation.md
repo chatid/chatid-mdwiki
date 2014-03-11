@@ -28,7 +28,7 @@ Both can be accomplished using Chatbar's [public API](public-api-overview.md). A
 
 ```javascript
 CID.q.push(['addCTA', {
-  chatid: 'chatid.echo',
+  chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat with Echo</button>"

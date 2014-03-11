@@ -47,9 +47,11 @@ Perhaps the simplest way to populate the Experts List from a retail website is t
 ```javascript
 CID.q.push(['addProduct', {
   brand: 'Acer',
-  sku: 'AP123456',
+  merchant_sku: '123456',
+  model: 'ABCDEF'
   name: 'Aspire A7',
-  price: 499.99
+  price: '499.99',
+  currency: 'USD'
 }]);
 ```
 
@@ -85,17 +87,22 @@ Logging Events
 Sometimes it can be helpful to send Chatbar events to be correlated with a user's chat interactions. This can be done by passing any basic data to the `log` API method:
 
 ```javascript
-CID.q.push(['log', 'conversion', [{
+CID.q.push(['log', 'conversion', {
     brand: 'Acer',
-    sku: '123456',
+    merchant_sku: '123456',
+    model: 'ABCDEF',
     name: 'Aspire A7',
-    price: 349.99
+    price: '349.99',
+    currency: 'USD'
   }, {
     brand: 'Seagate',
-    sku: '654321',
+    merchant_sku: '654321',
+    model: 'ABCDEF',
     name: '500GB External HDD',
-    price: 43.99
-  }, ... ]
+    price: '43.99',
+    currency: 'USD'
+  }
+  // ... use additional arguments for each product purchased
 ]);
 ```
 

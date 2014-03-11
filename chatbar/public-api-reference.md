@@ -8,7 +8,7 @@ Public API Reference
 * [addProduct](public-api-reference.md#addProduct) - add a chatid via product metadata
 * [addBrand](public-api-reference.md#addBrand) - add a chatid via brand name
 * [addCTA](public-api-reference.md#addCTA) - add a call to action
-* [log](public-api-reference.md#log) - send events to Chatbar
+* [log](public-api-reference.md#log) - log events for ChatID analysis
 
 Adding to the Experts List
 --------------------------
@@ -23,15 +23,28 @@ CID.q.push(['**addChatId**', *chatid*])
 
 CID.q.push(['**addChannel**', *chatid*])
 
-The same as `addChatId` but it will be displayed with a star symbol at the top of the
-Experts List.
+The same as `addChatId` but will be displayed with a star symbol at the top of the
+Experts List to indicate an expert from the host website.
 
 #### addProduct
 
 CID.q.push(['**addProduct**', *productData*])
 
-`productData` must be an object with a `brand` field. Chatbar will map this `brand` string
-to it's corresponding unique chat handle and add it to the Experts List.
+`productData` must be an object with the following structure:
+
+```javascript
+{
+  brand: 'Seagate', // brand name
+  merchant_sku: '654321', // retailer-specific SKU
+  model: 'ABCDEF', // vendor-provided model number/identifier
+  name: '500GB External HDD', // product name
+  price: '43.99', // product price
+  currency: 'USD' // currency for price
+}
+```
+
+Chatbar will use this metadata (usually just the `brand` string) to determine the
+brand's unique chat handle and add it to the Experts List.
 
 #### addBrand
 
@@ -47,14 +60,22 @@ Configure CTAs
 
 CID.q.push(['**addCTA**', *cta*])
 
-`cta` should be an object with `chatid`, `container`, and `settings` fields.
+`cta` should be an object with the following structure:
 
-* `chatid` must be the unique brand identifier to which this CTA is tied.
-* `container` may be a DOM element or a jQuery selector string.
-* `settings` should be an object with a `template` field.
-* `template` must be a string of HTML to inject within `container`. It may also be a
-JavaScript template for use with [_.template](http://underscorejs.org/#template). It
-will be rendered with the following metadata for its context:
+```javascript
+{
+  chatid: 'acer', // the unique brand identifier to which this CTA is tied
+  container: '#chatid-cta', // a DOM element or a jQuery selector string
+  settings: { // an object with a `template` field
+    // HTML to inject within `container`, the clickable element must specify data-ref='button'
+    template: "<button data-ref='button'>Chat now</button>"
+  }
+}
+```
+
+`template` may also be a JavaScript template for use with
+[_.template](http://underscorejs.org/#template). It will be rendered with the following
+metadata for its context:
 
 ```javascript
 {
@@ -98,17 +119,21 @@ Here is an example using the `log` method to send Chatbar a conversion event:
 CID.q.push([
   'log', // 1st param is the API method, in this case it's 'log'
   'conversion', // 2nd param is first argument to the 'log' method, in this case it's 'conversion'
-  [{ // 3rd param is the 2nd argument to the 'log' method, in this case, an array of products purchased
+  { // 3rd param is the 2nd argument to the 'log' method, in this case, the 1st of 2 products purchased
     brand: 'Acer',
-    sku: '123456',
+    merchant_sku: '123456',
+    model: 'ABCDEF',
     name: 'Aspire A7',
-    price: 349.99
-  }, {
+    price: '349.99',
+    currency: 'USD'
+  }, { // etc
     brand: 'Seagate',
-    sku: '654321',
+    merchant_sku: '654321',
+    model: 'ABCDEF',
     name: '500GB External HDD',
-    price: 43.99
-  }]
+    price: '43.99',
+    currency: 'USD'
+  }
 ]);
 ```
 
