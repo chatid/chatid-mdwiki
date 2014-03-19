@@ -134,7 +134,8 @@ CID.q.push([
     merchant_sku: '123456',
     model: 'ABCDEF',
     name: 'Aspire A7',
-    price: '349.99',
+    quantity: 1,
+    total_price: '349.99',
     currency: 'USD',
     tags: ['PCs & Laptops', 'Laptops']
   }, { // etc
@@ -142,12 +143,17 @@ CID.q.push([
     merchant_sku: '654321',
     model: 'ABCDEF',
     name: '500GB External HDD',
-    price: '43.99',
+    quantity: 1,
+    total_price: '43.99',
     currency: 'USD',
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
 ]);
 ```
+
+**HINT:** for the `'conversion'` event, product objects should follow the same structure
+as `productData` with the addition of the `quantity` field, and switching `price` for
+`total_price`.
 
 If this snippet were to be placed on your site's confirmation page, ChatID would be able
 to associate the purchase with any chats this user may have participated in during his or

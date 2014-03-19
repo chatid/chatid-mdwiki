@@ -66,7 +66,8 @@ CID.q.push(['log', 'conversion', {
     merchant_sku: '123456',
     model: 'ABCDEF',
     name: 'Aspire A7',
-    price: '349.99',
+    quantity: 1,
+    total_price: '349.99',
     currency: 'USD',
     tags: ['PCs & Laptops', 'Laptops']
   }, {
@@ -74,7 +75,8 @@ CID.q.push(['log', 'conversion', {
     merchant_sku: '654321',
     model: 'ABCDEF',
     name: '500GB External HDD',
-    price: '43.99',
+    quantity: 1,
+    total_price: '43.99',
     currency: 'USD',
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
