@@ -54,17 +54,13 @@ argument will be the unique `chatid` handle for the given brand:
 ```javascript
 var CID = (CID && CID.q) ? CID : { q: [] };
 CID.q.push(['mapProduct', {
-  brand: 'Ergotron',
-  merchant_sku: 'N82E16824994063',
-  model: '45-241-026',
-  name: 'LX Desk Mount LCD Arm',
-  price: '109.99',
-  currency: 'USD',
-  tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
+  // productData ...
 }, function(chatid) { // callback will fire if this brand is ChatID-enabled, passing the `chatid` handle
   // perform additional actions with this identifier, such as adding a CTA
 }]);
 ```
+
+[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-product/index.html)
 
 Configure CTAs
 --------------

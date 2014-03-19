@@ -91,8 +91,8 @@ will simply not appear.
 Logging Events
 --------------
 
-Sometimes it can be helpful to send Chatbar events to be correlated with a user's chat
-interactions. This can be done by passing any basic data to the `log` API method:
+It is helpful to send Chatbar events to be correlated with a user's chat interactions.
+This can be done by passing any basic data to the `log` API method:
 
 ```javascript
 CID.q.push(['log', 'conversion', {
