@@ -16,7 +16,8 @@ Adding to the Experts List
 
 CID.q.push(['**addChatId**', *chatid*])
 
-`chatid` must be a string or an object with a `chatid` field.
+Add a chatid to the Experts List. `chatid` must be a string or an object with a `chatid`
+field.
 
 #### addChannel
 
@@ -29,7 +30,8 @@ Experts List to indicate an expert from the host website.
 
 CID.q.push(['**mapProduct**', *productData*, *callback*])
 
-`productData` must be an object with the following structure:
+Add a chatid to the Experts List using product metadata. `productData` must be an object
+with the following structure:
 
 ```javascript
 {
@@ -38,7 +40,7 @@ CID.q.push(['**mapProduct**', *productData*, *callback*])
   model: 'ABCDEF', // vendor-provided model number/identifier
   name: '500GB External HDD', // product name
   price: '43.99', // current product price (sale price if it's on sale)
-  currency: 'USD' // currency for price
+  currency: 'USD', // currency for price
   tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
 }
 ```
@@ -71,7 +73,7 @@ Configure CTAs
 
 CID.q.push(['**addCTA**', *cta*])
 
-`cta` should be an object with the following structure:
+Add a call to action to the page. `cta` should be an object with the following structure:
 
 ```javascript
 {
@@ -121,8 +123,9 @@ Logging Events
 
 CID.q.push(['**log**', *eventName*, *args...*])
 
-`eventName` will be the key for which this unique behavior will be indexed. `args` may be
-any number of additional arguments relevant to the event.
+Log events for collecting metrics and analytics. `eventName` will be the key for which
+this unique behavior will be indexed. `args` may be any number of additional arguments
+relevant to the event.
 
 Here is an example using the `log` method to send Chatbar a conversion event:
 
@@ -136,14 +139,16 @@ CID.q.push([
     model: 'ABCDEF',
     name: 'Aspire A7',
     price: '349.99',
-    currency: 'USD'
+    currency: 'USD',
+    tags: ['PCs & Laptops', 'Laptops']
   }, { // etc
     brand: 'Seagate',
     merchant_sku: '654321',
     model: 'ABCDEF',
     name: '500GB External HDD',
     price: '43.99',
-    currency: 'USD'
+    currency: 'USD',
+    tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
 ]);
 ```

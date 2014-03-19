@@ -67,14 +67,16 @@ CID.q.push(['log', 'conversion', {
     model: 'ABCDEF',
     name: 'Aspire A7',
     price: '349.99',
-    currency: 'USD'
+    currency: 'USD',
+    tags: ['PCs & Laptops', 'Laptops']
   }, {
     brand: 'Seagate',
     merchant_sku: '654321',
     model: 'ABCDEF',
     name: '500GB External HDD',
     price: '43.99',
-    currency: 'USD'
+    currency: 'USD',
+    tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
   // ... use additional arguments for each product purchased
 ]);
