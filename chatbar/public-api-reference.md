@@ -5,8 +5,7 @@ Public API Reference
 
 * [addChatId](public-api-reference.md#addChatId) - add a chatid to the Experts List
 * [addChannel](public-api-reference.md#addChannel) - add a channel to the Experts List
-* [addProduct](public-api-reference.md#addProduct) - add a chatid via product metadata
-* [addBrand](public-api-reference.md#addBrand) - add a chatid via brand name
+* [mapProduct](public-api-reference.md#mapProduct) - add a chatid via product metadata
 * [addCTA](public-api-reference.md#addCTA) - add a call to action
 * [log](public-api-reference.md#log) - log events for ChatID analysis
 
@@ -26,9 +25,9 @@ CID.q.push(['**addChannel**', *chatid*])
 The same as `addChatId` but will be displayed with a star symbol at the top of the
 Experts List to indicate an expert from the host website.
 
-#### addProduct
+#### mapProduct
 
-CID.q.push(['**addProduct**', *productData*])
+CID.q.push(['**mapProduct**', *productData*[, *callback*]])
 
 `productData` must be an object with the following structure:
 
@@ -38,20 +37,32 @@ CID.q.push(['**addProduct**', *productData*])
   merchant_sku: '654321', // retailer-specific SKU
   model: 'ABCDEF', // vendor-provided model number/identifier
   name: '500GB External HDD', // product name
-  price: '43.99', // product price
+  price: '43.99', // current product price (sale price if it's on sale)
   currency: 'USD' // currency for price
+  tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
 }
 ```
 
-Chatbar will use this metadata (usually just the `brand` string) to determine the
-brand's unique chat handle and add it to the Experts List.
+Chatbar will use this metadata to determine the brand's unique chat handle (if it's
+ChatID-enabled) and add it to the Experts List.
 
-#### addBrand
+`callback` is an optional function to be called if the brand is ChatID-enabled. The first
+argument will be the unique `chatid` handle for the given brand:
 
-CID.q.push(['**addBrand**', *brand*])
-
-Chatbar will map `brand` to it's corresponding unique chat handle and add it to the Experts
-List.
+```javascript
+var CID = (CID && CID.q) ? CID : { q: [] };
+CID.q.push(['mapProduct', {
+  brand: 'Ergotron',
+  merchant_sku: 'N82E16824994063',
+  model: '45-241-026',
+  name: 'LX Desk Mount LCD Arm',
+  price: '109.99',
+  currency: 'USD',
+  tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
+}, function(chatid) { // callback will fire if this brand is ChatID-enabled, passing the `chatid` handle
+  // perform additional actions with this identifier, such as adding a CTA
+}]);
+```
 
 Configure CTAs
 --------------
@@ -137,4 +148,6 @@ CID.q.push([
 ]);
 ```
 
-If this snippet were to be placed on your site's confirmation page, ChatID would be able to associate the purchase with any chats this user may have participated in during his or her shopping experience.
+If this snippet were to be placed on your site's confirmation page, ChatID would be able
+to associate the purchase with any chats this user may have participated in during his or
+her shopping experience.

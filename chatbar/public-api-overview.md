@@ -3,7 +3,8 @@ Public API Overview
 
 > [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Overview**
 
-For further documentation, please visit the [complete API reference](public-api-reference.md).
+For further documentation, please visit the
+[complete API reference](public-api-reference.md).
 
 Basics
 ------
@@ -20,44 +21,66 @@ ready to execute them. To add something to the queue, use the `CID.q.push` metho
 CID.q.push(['<method>', args...])
 ```
 
+#### Where to place API calls
+
+Calls to the Public API should be placed directly following the initialization of the
+`CID.q` object, but can come before the script loader, like so:
+
+```
+<script type='text/javascript'>
+var CID = (CID && CID.q) ? CID : { q: [] };
+
+// perform API calls here
+CID.q.push(['addChatId', 'demo.chatid.echo']);
+
+(function(d) {
+  var cid = d.createElement('script'); cid.type = 'text/javascript'; cid.async = true;
+  cid.src = 'https://s3.amazonaws.com/chatid-mojo/g/config/example.js';
+  var s = d.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cid, s);
+})(document);
+</script>
+<noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
+```
+
 The Experts List
 ----------------
 
 The Experts List (also known as the Buddy List) is a panel within Chatbar that displays
-the experts available for chat. Upon starting a chat, the expert will remain
-in the List for the duration of the user's session.
+the experts available for chat. Upon starting a chat, the expert will remain in the List
+for the duration of the user's session, with a clock icon to indicate chat history:
 
 ![](./assets/screens/screen11.png "Experts List with just one ChatID (Acer)")
 
 As a user browses your website, the List may update to display relevant experts. Chatbar
 provides a few strategies for performing these updates.
 
-If you know the unique string which identifies the expert, you may simply call `addChatId`. `chatid` may be just the string, or an object with a `chatid` field:
+If you know the unique string which identifies the expert, you may simply call `addChatId`
+and pass it as the first argument:
 
 ```javascript
 CID.q.push(['addChatId', 'acer']);
-// or
-CID.q.push(['addChatId', { chatid: 'acer' }]);
 ```
 
 Perhaps the simplest way to populate the Experts List from a retail website is to use the
-`addProduct` method. Provide an object with a `brand` field, and ChatID will map that
+`mapProduct` method. Provide an object with a `brand` field, and ChatID will map that
 `brand` string to the unique expert and add it to the List:
 
 ```javascript
-CID.q.push(['addProduct', {
+CID.q.push(['mapProduct', {
   brand: 'Acer',
   merchant_sku: '123456',
-  model: 'ABCDEF'
+  model: 'ABCDEF',
   name: 'Aspire A7',
   price: '499.99',
   currency: 'USD'
 }]);
 ```
 
-**NOTE:** brand mapping is only available *after* ChatID has configured your embed code and only for mapping ChatID-enabled brands.
+**NOTE:** product mapping will only work *after* ChatID has configured your embed code
+and only for mapping ChatID-enabled brands.
 
-*Reference*: [addChatId](public-api-reference.md#addChatId), [addProduct](public-api-reference.md#addProduct)
+*Reference*: [addChatId](public-api-reference.md#addChatId),
+[mapProduct](public-api-reference.md#mapProduct)
 
 Configuring CTAs
 ----------------
@@ -79,12 +102,16 @@ CID.q.push(['addCTA', {
 
 *Reference*: [addCTA](public-api-reference.md#addCTA)
 
-**NOTE:** CTAs will not display unless experts are online and available for chat. Currently, there is no mechanism for checking expert availability via the public API, so all configuration should be done with the awareness that CTAs tied to unavailable chatids will simply not appear.
+**NOTE:** CTAs will not display unless experts are online and available for chat.
+Currently, there is no mechanism for checking expert availability via the public API, so
+all configuration should be done with the awareness that CTAs tied to unavailable chatids
+will simply not appear.
 
 Logging Events
 --------------
 
-Sometimes it can be helpful to send Chatbar events to be correlated with a user's chat interactions. This can be done by passing any basic data to the `log` API method:
+Sometimes it can be helpful to send Chatbar events to be correlated with a user's chat
+interactions. This can be done by passing any basic data to the `log` API method:
 
 ```javascript
 CID.q.push(['log', 'conversion', {
@@ -107,3 +134,9 @@ CID.q.push(['log', 'conversion', {
 ```
 
 *Reference*: [log](public-api-reference.md#log)
+
+#### Next
+
+* Are you a retailer? [Retailer Implementation Guide](retailer-implementation.md)
+* Dig deeper with the [API Reference](public-api-reference.md)
+* Browse [Examples](demos.md)
