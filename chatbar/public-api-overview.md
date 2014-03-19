@@ -61,26 +61,7 @@ and pass it as the first argument:
 CID.q.push(['addChatId', 'acer']);
 ```
 
-Perhaps the simplest way to populate the Experts List from a retail website is to use the
-`mapProduct` method. Provide an object with a `brand` field, and ChatID will map that
-`brand` string to the unique expert and add it to the List:
-
-```javascript
-CID.q.push(['mapProduct', {
-  brand: 'Acer',
-  merchant_sku: '123456',
-  model: 'ABCDEF',
-  name: 'Aspire A7',
-  price: '499.99',
-  currency: 'USD'
-}]);
-```
-
-**NOTE:** product mapping will only work *after* ChatID has configured your embed code
-and only for mapping ChatID-enabled brands.
-
-*Reference*: [addChatId](public-api-reference.md#addChatId),
-[mapProduct](public-api-reference.md#mapProduct)
+*Reference*: [addChatId](public-api-reference.md#addChatId)
 
 Configuring CTAs
 ----------------
@@ -93,7 +74,7 @@ CID.q.push(['addCTA', {
   chatid: 'acer',
   container: '#chatid-cta',
   settings: {
-    template: "<button>Chat now</button>"
+    template: "<button data-ref='button'>Chat now</button>"
   }
 }]);
 ```

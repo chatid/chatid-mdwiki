@@ -6,7 +6,7 @@ Retailer Implementation Guide
 Before following this guide, be sure to review [Getting Started](getting-started.md) and
 [Public API Basics](public-api-overview.md#Basics).
 
-This guide will cover the various use-cases for Chatbar on a retail website:
+This guide will cover a few use-cases for Chatbar on a retail website:
 
 * [Product Detail Pages](retailer-implementation.md#Product_Detail_Pages) - add a CTA to your product detail pages
 * [Confirmation Page Logging](retailer-implementation.md#Confirmation_Page) - log conversions from your confirmation page
@@ -48,8 +48,11 @@ CID.q.push(['mapProduct', {
 *Reference*: [mapProduct](public-api-reference.md#mapProduct),
 [addCTA](public-api-reference.md#addCTA)
 
-**NOTE:** This snippet should be placed across all PDPs, even if they feature vendors
-that are not yet ChatID-enabled. CTAs will simply not display for disabled vendors.
+**NOTE:** Product mapping will only work *after* ChatID has configured your embed code
+and only for mapping ChatID-enabled brands.
+
+**NOTE:** This snippet should be placed across all PDPs. For pages that feature vendors
+that are not yet ChatID-enabled, CTAs will simply not display.
 
 #### Confirmation Page
 

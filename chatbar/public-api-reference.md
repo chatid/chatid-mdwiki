@@ -27,7 +27,7 @@ Experts List to indicate an expert from the host website.
 
 #### mapProduct
 
-CID.q.push(['**mapProduct**', *productData*[, *callback*]])
+CID.q.push(['**mapProduct**', *productData*, *callback*])
 
 `productData` must be an object with the following structure:
 
