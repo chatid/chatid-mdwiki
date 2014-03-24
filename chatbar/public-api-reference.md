@@ -5,7 +5,7 @@ Public API Reference
 
 * [addChatId](public-api-reference.md#addChatId) - add a chatid to the Experts List
 * [addChannel](public-api-reference.md#addChannel) - add a channel to the Experts List
-* [mapProduct](public-api-reference.md#mapProduct) - add a chatid via product metadata
+* [mapBrand](public-api-reference.md#mapBrand) - add a chatid via brand name
 * [addCTA](public-api-reference.md#addCTA) - add a call to action
 * [log](public-api-reference.md#log) - log events for ChatID analysis
 
@@ -26,41 +26,25 @@ CID.q.push(['**addChannel**', *chatid*])
 The same as `addChatId` but will be displayed with a star symbol at the top of the
 Experts List to indicate an expert from the host website.
 
-#### mapProduct
+#### mapBrand
 
-CID.q.push(['**mapProduct**', *productData*, *callback*])
+CID.q.push(['**mapBrand**', *brandName*, *callback*])
 
-Add a chatid to the Experts List using product metadata. `productData` must be an object
-with the following structure:
-
-```javascript
-{
-  brand: 'Seagate', // brand name
-  merchant_sku: '654321', // retailer-specific SKU
-  model: 'ABCDEF', // vendor-provided model number/identifier
-  name: '500GB External HDD', // product name
-  price: '43.99', // current product price (sale price if it's on sale)
-  currency: 'USD', // currency for price
-  tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
-}
-```
-
-Chatbar will use this metadata to determine the brand's unique chat handle (if it's
-ChatID-enabled) and add it to the Experts List.
+Add a chatid to the Experts List using the brand name. Chatbar will use this metadata to
+determine the brand's unique chat handle (if it's ChatID-enabled) and add it to the
+Experts List.
 
 `callback` is an optional function to be called if the brand is ChatID-enabled. The first
 argument will be the unique `chatid` handle for the given brand:
 
 ```javascript
 var CID = (CID && CID.q) ? CID : { q: [] };
-CID.q.push(['mapProduct', {
-  // productData ...
-}, function(chatid) { // callback will fire if this brand is ChatID-enabled, passing the `chatid` handle
+CID.q.push(['mapBrand', /* brandName */, function(chatid) { // callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument
   // perform additional actions with this identifier, such as adding a CTA
 }]);
 ```
 
-[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-product/index.html)
+[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html)
 
 Configure CTAs
 --------------
@@ -123,6 +107,28 @@ Log events for collecting metrics and analytics. `eventName` will be the key for
 this unique behavior will be indexed. `args` may be any number of additional arguments
 relevant to the event.
 
+#### log - product
+
+CID.q.push(['**log**', '**product**', *productData*])
+
+Here is an example using the `log` method to send Chatbar metadata on a PDP:
+
+```javascript
+CID.q.push(['log', 'product', {
+  brand: 'Seagate', // brand name
+  merchant_sku: '654321', // retailer-specific SKU
+  model: 'ABCDEF', // vendor-provided model number/identifier
+  name: '500GB External HDD', // product name
+  price: '43.99', // current product price (sale price if it's on sale)
+  currency: 'USD', // currency for price
+  tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
+}]);
+```
+
+#### log - conversion
+
+CID.q.push(['**log**', '**conversion**', *productData1*, *productData2*, ...])
+
 Here is an example using the `log` method to send Chatbar a conversion event:
 
 ```javascript
@@ -152,8 +158,8 @@ CID.q.push([
 ```
 
 **HINT:** for the `'conversion'` event, product objects should follow the same structure
-as `productData` with the addition of the `quantity` field, and switching `price` for
-`total_price`.
+as used with the 'product' event, with the addition of the `quantity` field, and swapping
+`price` for `total_price`.
 
 If this snippet were to be placed on your site's confirmation page, ChatID would be able
 to associate the purchase with any chats this user may have participated in during his or

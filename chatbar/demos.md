@@ -41,24 +41,16 @@ CID.q.push(['addCTA', {
 
 [View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
 
-## Add experts by mapping a product to it's chatid
+## Add experts by mapping a brand to it's chatid
 
-In this example, we populate the Experts List by mapping product data to it's `chatid`.
+In this example, we populate the Experts List by mapping a brand name to it's `chatid`.
 Then we add the chatid and corresponding CTA. Notice the use of a callback function for
 getting the result of the first API call to accommodate async flow:
 
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['mapProduct', {
-  brand: 'iBUYPOWER',
-  name: 'iBUYPOWER ARC Series NE611FX Desktop PC AMD FX-Series FX-4200 (3.3GHz) 4GB DDR3 1TB HDD Capacity Windows 8.1 64-Bit',
-  merchant_sku: 'N82E16883227510',
-  model: 'ARC Series NE611FX',
-  price: '479.99',
-  currency: 'USD',
-  tags: ['PCs &amp; Laptops', 'Desktop PCs', 'All Desktop PCs', 'iBUYPOWER']
-}, function(chatid) {
+CID.q.push(['mapBrand', 'iBUYPOWER', function(chatid) {
   CID.q.push(['addCTA', {
     chatid: chatid,
     container: '#chatid-cta',
@@ -70,4 +62,4 @@ CID.q.push(['mapProduct', {
 </script>
 ```
 
-[View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-product/index.html)
+[View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html)

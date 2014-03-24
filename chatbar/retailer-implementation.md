@@ -8,10 +8,11 @@ Before following this guide, be sure to review [Getting Started](getting-started
 
 This guide will cover a few use-cases for Chatbar on a retail website:
 
-* [Product Detail Pages](retailer-implementation.md#Product_Detail_Pages) - add a CTA to your product detail pages
-* [Confirmation Page Logging](retailer-implementation.md#Confirmation_Page) - log conversions from your confirmation page
+* [Product Detail Page CTA](retailer-implementation.md#Product_Detail_Page_CTA) - add a CTA to your product detail pages
+* [Product Detail Page Logging](retailer-implementation.md#Product_Detail_Page_Logging) - log product metadata from your PDPs
+* [Confirmation Page Logging](retailer-implementation.md#Confirmation_Page_Logging) - log conversions from your confirmation page
 
-#### Product Detail Pages (PDPs)
+#### Product Detail Page (PDP) CTA
 
 A common use-case for Chatbar on retail websites is a brand-specific call-to-action (CTA)
 on product detail pages.
@@ -22,19 +23,34 @@ First, add a CTA container element (the `id` can be anything you'd like):
 <div id='chatid-cta-pdp'></div>
 ```
 
-Next, call [mapProduct](public-api-reference.md#mapProduct) with product metadata and a
-callback function that calls [addCTA](public-api-reference.md#addCTA). For example:
+Next, you must choose the appropriate strategy for rendering this CTA: **(1)** or **(2)**.
+
+**(1) I know the `chatid` for this brand**
+
+If you have access to the ChatID-specific identifier for this brand (an all lowercase
+string), you may add their CTA straight away:
 
 ```javascript
-CID.q.push(['mapProduct', {
-  brand: 'Ergotron',
-  merchant_sku: 'N82E16824994063',
-  model: '45-241-026',
-  name: 'LX Desk Mount LCD Arm',
-  price: '109.99',
-  currency: 'USD',
-  tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
-}, function(chatid) {
+CID.q.push(['addCTA', {
+  chatid: 'ergotron',
+  container: '#chatid-cta-pdp',
+  settings: {
+    template: "<button data-ref='button'>Chat with Ergotron</button>"
+  }
+}]);
+```
+
+*Reference*: [addCTA](public-api-reference.md#addCTA)
+
+**(2) I do not have the `chatid`, and need to obtain it by mapping the brand name**
+
+As part of your Chatbar implementation, ChatID can help map your brand ids to the vendor's
+`chatid`. Simply call [mapBrand](public-api-reference.md#mapBrand) with the name of the
+brand and provide a callback function for obtaining the `chatid`, which you can then pass
+to [addCTA](public-api-reference.md#addCTA). For example:
+
+```javascript
+CID.q.push(['mapBrand', 'Ergotron', function(chatid) {
   CID.q.push(['addCTA', {
     chatid: chatid,
     container: '#chatid-cta-pdp',
@@ -45,16 +61,32 @@ CID.q.push(['mapProduct', {
 }]);
 ```
 
-*Reference*: [mapProduct](public-api-reference.md#mapProduct),
+*Reference*: [mapBrand](public-api-reference.md#mapBrand),
 [addCTA](public-api-reference.md#addCTA)
 
-**NOTE:** Product mapping will only work *after* ChatID has configured your embed code
+**NOTE:** Brand mapping will only work *after* ChatID has configured your embed code
 and only for mapping ChatID-enabled brands.
 
-**NOTE:** This snippet should be placed across all PDPs. For pages that feature vendors
-that are not yet ChatID-enabled, CTAs will simply not display.
+#### Product Detail Page Logging
 
-#### Confirmation Page
+On product detail pages, use the [log](public-api-reference.md#log) API call with
+the `'product'` event:
+
+```javascript
+CID.q.push(['log', 'product', {
+  brand: 'Ergotron',
+  merchant_sku: 'N82E16824994063',
+  model: '45241026',
+  name: 'LX Desk Mount LCD Arm',
+  price: '109.99',
+  currency: 'USD',
+  tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
+}]);
+```
+
+*Reference*: [log - product](public-api-reference.md#log_-_product)
+
+#### Confirmation Page Logging
 
 On your confirmation page, use the [log](public-api-reference.md#log) API call with
 the `'conversion'` event. Use additional arguments to pass in all products purchased by
@@ -84,7 +116,7 @@ CID.q.push(['log', 'conversion', {
 ]);
 ```
 
-*Reference*: [log](public-api-reference.md#log)
+*Reference*: [log - conversion](public-api-reference.md#log_-_conversion)
 
 #### Next
 
