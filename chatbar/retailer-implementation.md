@@ -31,13 +31,13 @@ If you have access to the ChatID-specific identifier for this brand (an all lowe
 string), you may add their CTA straight away:
 
 ```javascript
-CID.q.push(['addCTA', {
+CID('addCTA', {
   chatid: 'ergotron',
   container: '#chatid-cta-pdp',
   settings: {
     template: "<button data-ref='button'>Chat with Ergotron</button>"
   }
-}]);
+});
 ```
 
 *Reference*: [addCTA](public-api-reference.md#addCTA)
@@ -50,15 +50,15 @@ brand and provide a callback function for obtaining the `chatid`, which you can 
 to [addCTA](public-api-reference.md#addCTA). For example:
 
 ```javascript
-CID.q.push(['mapBrand', 'Ergotron', function(chatid) {
-  CID.q.push(['addCTA', {
+CID('mapBrand', 'Ergotron', function(chatid) {
+  CID('addCTA', {
     chatid: chatid,
     container: '#chatid-cta-pdp',
     settings: {
       template: "<button data-ref='button'>Chat with Ergotron</button>"
     }
-  }]);
-}]);
+  });
+});
 ```
 
 *Reference*: [mapBrand](public-api-reference.md#mapBrand),
@@ -73,7 +73,7 @@ On product detail pages, use the [log](public-api-reference.md#log) API call wit
 the `'product'` event:
 
 ```javascript
-CID.q.push(['log', 'product', {
+CID('log', 'product', {
   brand: 'Ergotron',
   merchant_sku: 'N82E16824994063',
   model: '45241026',
@@ -81,7 +81,7 @@ CID.q.push(['log', 'product', {
   price: '109.99',
   currency: 'USD',
   tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
-}]);
+});
 ```
 
 *Reference*: [log - product](public-api-reference.md#log_-_product)
@@ -93,7 +93,7 @@ the `'conversion'` event. Use additional arguments to pass in all products purch
 the user:
 
 ```javascript
-CID.q.push(['log', 'conversion', {
+CID('log', 'conversion', {
     brand: 'Acer',
     merchant_sku: '123456',
     model: 'ABCDEF',
@@ -113,7 +113,7 @@ CID.q.push(['log', 'conversion', {
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
   // ... use additional arguments for each product purchased
-]);
+);
 ```
 
 *Reference*: [log - conversion](public-api-reference.md#log_-_conversion)

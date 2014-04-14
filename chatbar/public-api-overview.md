@@ -9,35 +9,33 @@ For further documentation, please visit the
 Basics
 ------
 
-#### Async Syntax
+#### Asynchronous Loading
 
 *Adapted from [ga.js](https://developers.google.com/analytics/devguides/collection/gajs/)*
 
-The `CID.q` object is what makes the asynchronous syntax possible. It acts as a queue,
-which is a first-in, first-out data structure that collects API calls until Chatbar is
-ready to execute them. To add something to the queue, use the `CID.q.push` method:
+The `CID` object is your interface for asynchornously calling the Chatbar public API.
+It acts as a queue, which is a first-in, first-out data structure that collects API calls
+until Chatbar is ready to execute them. To add something to the queue, call `CID` with the
+method name as the first argument:
 
 ```javascript
-CID.q.push(['<method>', args...])
+CID('<method>', args...)
 ```
 
 #### Where to place API calls
 
-Calls to the Public API should be placed directly following the initialization of the
-`CID.q` object, but can come before the script loader, like so:
+Calls to the Public API should be placed directly after your embed code, following the
+first call to "initialize", and no earlier:
 
 ```
 <script type='text/javascript'>
-var CID = (CID && CID.q) ? CID : { q: [] };
-
-// perform API calls here
-CID.q.push(['addChatId', 'demo.chatid.echo']);
-
-(function(d) {
-  var cid = d.createElement('script'); cid.type = 'text/javascript'; cid.async = true;
-  cid.src = 'https://s3.amazonaws.com/chatid-mojo/g/config/example.js';
-  var s = d.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cid, s);
-})(document);
+(function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
+  (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
+  d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
+})(window,document,'script','//chatidcdn.com/chatbar/main/stable/1/main.js','CID');
+CID('initialize', { channelName: 'demo.chatbar' });
+// Now make API calls here
+CID('addChatId', 'demo.chatid.echo');
 </script>
 <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
 ```
@@ -58,7 +56,7 @@ If you know the unique string which identifies the expert, you may simply call `
 and pass it as the first argument:
 
 ```javascript
-CID.q.push(['addChatId', 'acer']);
+CID('addChatId', 'acer');
 ```
 
 *Reference*: [addChatId](public-api-reference.md#addChatId)
@@ -70,13 +68,13 @@ Chatbar does not appear on your website until the user clicks a call to action (
 add CTAs to your page, use the `addCTA` API method:
 
 ```javascript
-CID.q.push(['addCTA', {
+CID('addCTA', {
   chatid: 'acer',
   container: '#chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat now</button>"
   }
-}]);
+});
 ```
 
 `addCTA` will call `addChatId` internally if you haven't done so already.
@@ -95,7 +93,7 @@ It is helpful to send Chatbar events to be correlated with a user's chat interac
 This can be done by passing any basic data to the `log` API method:
 
 ```javascript
-CID.q.push(['log', 'conversion', {
+CID('log', 'conversion', {
     brand: 'Acer',
     merchant_sku: '123456',
     model: 'ABCDEF',
@@ -113,7 +111,7 @@ CID.q.push(['log', 'conversion', {
     currency: 'USD'
   }
   // ... use additional arguments for each product purchased
-]);
+);
 ```
 
 *Reference*: [log](public-api-reference.md#log)

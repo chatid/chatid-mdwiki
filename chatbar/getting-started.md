@@ -4,19 +4,20 @@ Getting Started
 > [Home](index.md) ▸ [Overview](index.md#Overview) ▸ **Getting Started**
 
 To get started, add your Chatbar embed code to all pages. Your embed code looks like the
-following, with `example.js` swapped for your client's identifier (usually your company's
-name):
+following, with `demo.chatbar` swapped for your client's identifier (usually your
+company's name):
 
 ```
+<!-- ChatID Chatbar -->
 <script type='text/javascript'>
-var CID = (CID && CID.q) ? CID : { q: [] };
-(function(d) {
-  var cid = d.createElement('script'); cid.type = 'text/javascript'; cid.async = true;
-  cid.src = 'https://s3.amazonaws.com/chatid-mojo/g/config/example.js';
-  var s = d.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cid, s);
-})(document);
+(function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
+  (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
+  d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
+})(window,document,'script','//chatidcdn.com/chatbar/main/stable/1/main.js','CID');
+CID('initialize', { channelName: 'demo.chatbar' });
 </script>
 <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
+<!-- End ChatID Chatbar -->
 ```
 
 While Chatbar does not display by default, the JavaScript must be available across your
@@ -32,13 +33,13 @@ Both can be accomplished using Chatbar's [public API](public-api-overview.md). A
 following API call so you can chat with Echo, the friendly ChatID robot:
 
 ```javascript
-CID.q.push(['addCTA', {
+CID('addCTA', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat with Echo</button>"
   }
-}]);
+});
 ```
 
 And then add an HTML container with an `id` of `chatid-cta`:
@@ -48,7 +49,7 @@ And then add an HTML container with an `id` of `chatid-cta`:
 ```
 
 That's it! Open the HTML page and fire off a test chat. You should see something similar
-to [this demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-echo/index.html).
+to [this demo](http://demo.chatid.com/chatbar/docs-echo/index.html).
 
 **HINT:** The HTML page must be served by a webserver for chat to work properly. For
 debugging, try the node.js npm module, `http-server` or `python -m SimpleHTTPServer`.
