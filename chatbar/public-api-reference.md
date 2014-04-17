@@ -14,21 +14,21 @@ Adding to the Experts List
 
 #### addChatId
 
-CID.q.push(['**addChatId**', *chatid*])
+CID('**addChatId**', *chatid*)
 
 Add a chatid to the Experts List. `chatid` must be a string or an object with a `chatid`
 field.
 
 #### addChannel
 
-CID.q.push(['**addChannel**', *chatid*])
+CID('**addChannel**', *chatid*)
 
 The same as `addChatId` but will be displayed with a star symbol at the top of the
 Experts List to indicate an expert from the host website.
 
 #### mapBrand
 
-CID.q.push(['**mapBrand**', *brandName*, *callback*])
+CID('**mapBrand**', *brandName*, *callback*)
 
 Add a chatid to the Experts List using the brand name. Chatbar will use this metadata to
 determine the brand's unique chat handle (if it's ChatID-enabled) and add it to the
@@ -38,10 +38,9 @@ Experts List.
 argument will be the unique `chatid` handle for the given brand:
 
 ```javascript
-var CID = (CID && CID.q) ? CID : { q: [] };
-CID.q.push(['mapBrand', /* brandName */, function(chatid) { // callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument
+CID('mapBrand', /* brandName */, function(chatid) { // callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument
   // perform additional actions with this identifier, such as adding a CTA
-}]);
+});
 ```
 
 [View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html)
@@ -51,7 +50,7 @@ Configure CTAs
 
 #### addCTA
 
-CID.q.push(['**addCTA**', *cta*])
+CID('**addCTA**', *cta*)
 
 Add a call to action to the page. `cta` should be an object with the following structure:
 
@@ -85,13 +84,13 @@ In the following example we append a CTA to some element with an ID of `chatid-c
 using dynamic text within the button:
 
 ```javascript
-CID.q.push(['addCTA', {
+CID('addCTA', {
   chatid: 'chatid.echo',
   container: 'chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat with <%= this.label %></button>"
   }
-}]);
+});
 ```
 
 [View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
@@ -101,7 +100,7 @@ Logging Events
 
 #### log
 
-CID.q.push(['**log**', *eventName*, *args...*])
+CID('**log**', *eventName*, *args...*)
 
 Log events for collecting metrics and analytics. `eventName` will be the key for which
 this unique behavior will be indexed. `args` may be any number of additional arguments
@@ -109,12 +108,12 @@ relevant to the event.
 
 #### log - product
 
-CID.q.push(['**log**', '**product**', *productData*])
+CID('**log**', '**product**', *productData*)
 
 Here is an example using the `log` method to send Chatbar metadata on a PDP:
 
 ```javascript
-CID.q.push(['log', 'product', {
+CID('log', 'product', {
   brand: 'Seagate', // brand name
   merchant_sku: '654321', // retailer-specific SKU
   model: 'ABCDEF', // vendor-provided model number/identifier
@@ -122,17 +121,17 @@ CID.q.push(['log', 'product', {
   price: '43.99', // current product price (sale price if it's on sale)
   currency: 'USD', // currency for price
   tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
-}]);
+});
 ```
 
 #### log - conversion
 
-CID.q.push(['**log**', '**conversion**', *productData1*, *productData2*, ...])
+CID('**log**', '**conversion**', *productData1*, *productData2*, ...)
 
 Here is an example using the `log` method to send Chatbar a conversion event:
 
 ```javascript
-CID.q.push([
+CID(
   'log', // 1st param is the API method, in this case it's 'log'
   'conversion', // 2nd param is first argument to the 'log' method, in this case it's 'conversion'
   { // 3rd param is the 2nd argument to the 'log' method, in this case, the 1st of 2 products purchased
@@ -154,7 +153,7 @@ CID.q.push([
     currency: 'USD',
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
-]);
+);
 ```
 
 **HINT:** for the `'conversion'` event, product objects should follow the same structure

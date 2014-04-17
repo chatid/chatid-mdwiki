@@ -10,15 +10,15 @@ In this example, we populate the Experts List with Echo the ChatID robot.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['addChatId', 'demo.chatid.echo']); // optional as `addCTA` will do this for us.
-CID.q.push(['addCTA', {
+CID('addChatId', 'demo.chatid.echo'); // optional as `addCTA` will do this for us.
+CID('addCTA', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta'
-}]);
+});
 </script>
 ```
 
-[View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-echo/index.html)
+[View example](http://demo.chatid.com/chatbar/docs-echo/index.html)
 
 ## Provide a dynamic template for the CTA
 
@@ -29,17 +29,17 @@ name dynamically.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['addCTA', {
+CID('addCTA', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
     template: "<button data-ref='button'>Chat with <%= this.label %></button>"
   }
-}]);
+});
 </script>
 ```
 
-[View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
+[View example](http://demo.chatid.com/chatbar/docs-cta/index.html)
 
 ## Add experts by mapping a brand to it's chatid
 
@@ -50,16 +50,16 @@ getting the result of the first API call to accommodate async flow:
 ```
 <div id='chatid-cta'></div>
 <script>
-CID.q.push(['mapBrand', 'iBUYPOWER', function(chatid) {
-  CID.q.push(['addCTA', {
+CID('mapBrand', 'iBUYPOWER', function(chatid) {
+  CID('addCTA', {
     chatid: chatid,
     container: '#chatid-cta',
     settings: {
       template: "Have product questions? <button data-ref='button'><img src='https://s3.amazonaws.com/chatid-mojo/g/assets/newegg/bubble-green.png' /> Chat with iBUYPOWER</button>"
     }
-  }]);
-}]);
+  });
+});
 </script>
 ```
 
-[View example](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html)
+[View example](http://demo.chatid.com/chatbar/docs-map-brand/index.html)
