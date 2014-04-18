@@ -33,10 +33,7 @@ string), you may add their CTA straight away:
 ```javascript
 CID('addCTA', {
   chatid: 'ergotron',
-  container: '#chatid-cta-pdp',
-  settings: {
-    template: "<button data-ref='button'>Chat with Ergotron</button>"
-  }
+  container: '#chatid-cta-pdp'
 });
 ```
 
@@ -53,10 +50,7 @@ to [addCTA](public-api-reference.md#addCTA). For example:
 CID('mapBrand', 'Ergotron', function(chatid) {
   CID('addCTA', {
     chatid: chatid,
-    container: '#chatid-cta-pdp',
-    settings: {
-      template: "<button data-ref='button'>Chat with Ergotron</button>"
-    }
+    container: '#chatid-cta-pdp'
   });
 });
 ```

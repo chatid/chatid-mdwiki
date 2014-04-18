@@ -70,10 +70,7 @@ add CTAs to your page, use the `addCTA` API method:
 ```javascript
 CID('addCTA', {
   chatid: 'acer',
-  container: '#chatid-cta',
-  settings: {
-    template: "<button data-ref='button'>Chat now</button>"
-  }
+  container: '#chatid-cta'
 });
 ```
 

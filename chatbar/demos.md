@@ -33,7 +33,7 @@ CID('addCTA', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
-    template: "<button data-ref='button'>Chat with <%= this.label %></button>"
+    template: "<div><button data-ref='button'>Chat with <%= this.label %></button></div>"
   }
 });
 </script>
@@ -55,7 +55,7 @@ CID('mapBrand', 'iBUYPOWER', function(chatid) {
     chatid: chatid,
     container: '#chatid-cta',
     settings: {
-      template: "Have product questions? <button data-ref='button'><img src='https://s3.amazonaws.com/chatid-mojo/g/assets/newegg/bubble-green.png' /> Chat with iBUYPOWER</button>"
+      template: "<div>Have product questions? <button data-ref='button'><img src='https://s3.amazonaws.com/chatid-mojo/g/assets/newegg/bubble-green.png' /> Chat with iBUYPOWER</button></div>"
     }
   });
 });

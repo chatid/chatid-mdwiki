@@ -59,8 +59,8 @@ Add a call to action to the page. `cta` should be an object with the following s
   chatid: 'acer', // the unique brand identifier to which this CTA is tied
   container: '#chatid-cta', // a DOM element or a jQuery selector string
   settings: { // an object with a `template` field
-    // HTML to inject within `container`, the clickable element must specify data-ref='button'
-    template: "<button data-ref='button'>Chat now</button>"
+    // HTML to inject within `container`, the clickable element must have a parent and specify data-ref='button'
+    template: "<div><button data-ref='button'>Chat now</button></div>"
   }
 }
 ```
@@ -88,7 +88,7 @@ CID('addCTA', {
   chatid: 'chatid.echo',
   container: 'chatid-cta',
   settings: {
-    template: "<button data-ref='button'>Chat with <%= this.label %></button>"
+    template: "<div><button data-ref='button'>Chat with <%= this.label %></button></div>"
   }
 });
 ```
