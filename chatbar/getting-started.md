@@ -35,7 +35,10 @@ following API call so you can chat with Echo, the friendly ChatID robot:
 ```javascript
 CID('addCTA', {
   chatid: 'demo.chatid.echo',
-  container: '#chatid-cta'
+  container: '#chatid-cta',
+  settings: {
+    template: "<button data-ref='button'>Chat with Echo</button>"
+  }
 });
 ```
 
