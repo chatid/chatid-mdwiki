@@ -33,7 +33,7 @@ Both can be accomplished using Chatbar's [public API](public-api-overview.md). A
 following API call so you can chat with Echo, the friendly ChatID robot:
 
 ```javascript
-CID('addCTA', {
+CID('insertCTA', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {

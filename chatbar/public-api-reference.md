@@ -6,7 +6,7 @@ Public API Reference
 * [addChatId](public-api-reference.md#addChatId) - add a chatid to the Experts List
 * [addChannel](public-api-reference.md#addChannel) - add a channel to the Experts List
 * [mapBrand](public-api-reference.md#mapBrand) - add a chatid via brand name
-* [addCTA](public-api-reference.md#addCTA) - add a call to action
+* [insertCTA](public-api-reference.md#insertCTA) - add a call to action
 * [log](public-api-reference.md#log) - log events for ChatID analysis
 
 Adding to the Experts List
@@ -48,9 +48,9 @@ CID('mapBrand', /* brandName */, function(chatid) { // callback will fire if thi
 Configure CTAs
 --------------
 
-#### addCTA
+#### insertCTA
 
-CID('**addCTA**', *cta*)
+CID('**insertCTA**', *cta*)
 
 Add a call to action to the page. `cta` should be an object with the following structure:
 
@@ -78,13 +78,13 @@ metadata for its context:
 }
 ```
 
-`addCTA` will call `addChatId` internally if you haven't done so already.
+`insertCTA` will call `addChatId` internally if you haven't done so already.
 
 In the following example we append a CTA to some element with an ID of `chatid-cta`,
 using dynamic text within the button:
 
 ```javascript
-CID('addCTA', {
+CID('insertCTA', {
   chatid: 'chatid.echo',
   container: 'chatid-cta',
   settings: {

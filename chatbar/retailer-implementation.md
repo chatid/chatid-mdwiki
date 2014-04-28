@@ -31,7 +31,7 @@ If you have access to the ChatID-specific identifier for this brand (an all lowe
 string), you may add their CTA straight away:
 
 ```javascript
-CID('addCTA', {
+CID('insertCTA', {
   chatid: 'ergotron',
   container: '#chatid-cta-pdp',
   settings: {
@@ -40,18 +40,18 @@ CID('addCTA', {
 });
 ```
 
-*Reference*: [addCTA](public-api-reference.md#addCTA)
+*Reference*: [insertCTA](public-api-reference.md#insertCTA)
 
 **(2) I do not have the `chatid`, and need to obtain it by mapping the brand name**
 
 As part of your Chatbar implementation, ChatID can help map your brand ids to the vendor's
 `chatid`. Simply call [mapBrand](public-api-reference.md#mapBrand) with the name of the
 brand and provide a callback function for obtaining the `chatid`, which you can then pass
-to [addCTA](public-api-reference.md#addCTA). For example:
+to [insertCTA](public-api-reference.md#insertCTA). For example:
 
 ```javascript
 CID('mapBrand', 'Ergotron', function(chatid) {
-  CID('addCTA', {
+  CID('insertCTA', {
     chatid: chatid,
     container: '#chatid-cta-pdp',
     settings: {
@@ -62,7 +62,7 @@ CID('mapBrand', 'Ergotron', function(chatid) {
 ```
 
 *Reference*: [mapBrand](public-api-reference.md#mapBrand),
-[addCTA](public-api-reference.md#addCTA)
+[insertCTA](public-api-reference.md#insertCTA)
 
 **NOTE:** Brand mapping will only work *after* ChatID has configured your embed code
 and only for mapping ChatID-enabled brands.

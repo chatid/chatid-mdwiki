@@ -65,10 +65,10 @@ Configuring CTAs
 ----------------
 
 Chatbar does not appear on your website until the user clicks a call to action (CTA). To
-add CTAs to your page, use the `addCTA` API method:
+add CTAs to your page, use the `insertCTA` API method:
 
 ```javascript
-CID('addCTA', {
+CID('insertCTA', {
   chatid: 'acer',
   container: '#chatid-cta',
   settings: {
@@ -77,9 +77,9 @@ CID('addCTA', {
 });
 ```
 
-`addCTA` will call `addChatId` internally if you haven't done so already.
+`insertCTA` will call `addChatId` internally if you haven't done so already.
 
-*Reference*: [addCTA](public-api-reference.md#addCTA)
+*Reference*: [insertCTA](public-api-reference.md#insertCTA)
 
 **NOTE:** CTAs will not display unless experts are online and available for chat.
 Currently, there is no mechanism for checking expert availability via the public API, so
