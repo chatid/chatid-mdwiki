@@ -99,7 +99,8 @@ CID('log', 'conversion', {
     model: 'ABCDEF',
     name: 'Aspire A7',
     quantity: 1,
-    total_price: '349.99',
+    sale_price: '349.99',
+    unit_price: '349.99',
     currency: 'USD'
   }, {
     brand: 'Seagate',
@@ -107,7 +108,8 @@ CID('log', 'conversion', {
     model: 'ABCDEF',
     name: '500GB External HDD',
     quantity: 1,
-    total_price: '43.99',
+    sale_price: '38.99',
+    unit_price: '43.99',
     currency: 'USD'
   }
   // ... use additional arguments for each product purchased

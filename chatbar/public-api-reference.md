@@ -118,7 +118,8 @@ CID('log', 'product', {
   merchant_sku: '654321', // retailer-specific SKU
   model: 'ABCDEF', // vendor-provided model number/identifier
   name: '500GB External HDD', // product name
-  price: '43.99', // current product price (sale price if it's on sale)
+  sale_price: '38.99', // current product price (sale price if it's on sale)
+  unit_price: '43.99', // base product price (opposed to sale price)
   currency: 'USD', // currency for price
   tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives'] // an array of tags that describe the product
 });
@@ -140,7 +141,8 @@ CID(
     model: 'ABCDEF',
     name: 'Aspire A7',
     quantity: 1,
-    total_price: '349.99',
+    sale_price: '349.99',
+    unit_price: '349.99',
     currency: 'USD',
     tags: ['PCs & Laptops', 'Laptops']
   }, { // etc
@@ -149,7 +151,8 @@ CID(
     model: 'ABCDEF',
     name: '500GB External HDD',
     quantity: 1,
-    total_price: '43.99',
+    sale_price: '38.99',
+    unit_price: '43.99',
     currency: 'USD',
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
@@ -157,8 +160,7 @@ CID(
 ```
 
 **HINT:** for the `'conversion'` event, product objects should follow the same structure
-as used with the 'product' event, with the addition of the `quantity` field, and swapping
-`price` for `total_price`.
+as used with the 'product' event, with the addition of the `quantity` field.
 
 If this snippet were to be placed on your site's confirmation page, ChatID would be able
 to associate the purchase with any chats this user may have participated in during his or

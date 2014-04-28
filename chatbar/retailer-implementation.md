@@ -78,7 +78,8 @@ CID('log', 'product', {
   merchant_sku: 'N82E16824994063',
   model: '45241026',
   name: 'LX Desk Mount LCD Arm',
-  price: '109.99',
+  sale_price: '109.99',
+  unit_price: '109.99',
   currency: 'USD',
   tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
 });
@@ -99,7 +100,8 @@ CID('log', 'conversion', {
     model: 'ABCDEF',
     name: 'Aspire A7',
     quantity: 1,
-    total_price: '349.99',
+    sale_price: '349.99',
+    unit_price: '349.99',
     currency: 'USD',
     tags: ['PCs & Laptops', 'Laptops']
   }, {
@@ -108,7 +110,8 @@ CID('log', 'conversion', {
     model: 'ABCDEF',
     name: '500GB External HDD',
     quantity: 1,
-    total_price: '43.99',
+    sale_price: '38.99',
+    unit_price: '43.99',
     currency: 'USD',
     tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
   }
