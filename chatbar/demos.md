@@ -10,8 +10,8 @@ In this example, we populate the Experts List with Echo the ChatID robot.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID('addChatId', 'demo.chatid.echo'); // optional as `insertCTA` will do this for us.
-CID('insertCTA', {
+CID('chatids.add', 'demo.chatid.echo'); // optional as `ctas.insert` will do this for us.
+CID('ctas.insert', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta'
 });
@@ -29,7 +29,7 @@ name dynamically.
 ```
 <div id='chatid-cta'></div>
 <script>
-CID('insertCTA', {
+CID('ctas.insert', {
   chatid: 'demo.chatid.echo',
   container: '#chatid-cta',
   settings: {
@@ -50,8 +50,8 @@ getting the result of the first API call to accommodate async flow:
 ```
 <div id='chatid-cta'></div>
 <script>
-CID('mapBrand', 'iBUYPOWER', function(chatid) {
-  CID('insertCTA', {
+CID('chatids.lookup.byBrand', 'iBUYPOWER', function(chatid) {
+  CID('ctas.insert', {
     chatid: chatid,
     container: '#chatid-cta',
     settings: {

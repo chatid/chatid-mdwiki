@@ -3,32 +3,32 @@ Public API Reference
 
 > [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Reference**
 
-* [addChatId](public-api-reference.md#addChatId) - add a chatid to the Experts List
-* [addChannel](public-api-reference.md#addChannel) - add a channel to the Experts List
-* [mapBrand](public-api-reference.md#mapBrand) - add a chatid via brand name
-* [insertCTA](public-api-reference.md#insertCTA) - add a call to action
-* [log](public-api-reference.md#log) - log events for ChatID analysis
+* [chatids.add](public-api-reference.md#chatids.add) - add a chatid to the Experts List
+* [chatids.addChannel](public-api-reference.md#chatids.addChannel) - add a channel to the Experts List
+* [chatids.lookup.byBrand](public-api-reference.md#chatids.lookup.byBrand) - add a chatid via brand name
+* [ctas.insert](public-api-reference.md#ctas.insert) - add a call to action
+* [events.log](public-api-reference.md#events.log) - log events for ChatID analysis
 
 Adding to the Experts List
 --------------------------
 
-#### addChatId
+#### chatids.add
 
-CID('**addChatId**', *chatid*)
+CID('**chatids.add**', *chatid*)
 
 Add a chatid to the Experts List. `chatid` must be a string or an object with a `chatid`
 field.
 
-#### addChannel
+#### chatids.addChannel
 
-CID('**addChannel**', *chatid*)
+CID('**chatids.addChannel**', *chatid*)
 
-The same as `addChatId` but will be displayed with a star symbol at the top of the
+The same as `chatids.add` but will be displayed with a star symbol at the top of the
 Experts List to indicate an expert from the host website.
 
-#### mapBrand
+#### chatids.lookup.byBrand
 
-CID('**mapBrand**', *brandName*, *callback*)
+CID('**chatids.lookup.byBrand**', *brandName*, *callback*)
 
 Add a chatid to the Experts List using the brand name. Chatbar will use this metadata to
 determine the brand's unique chat handle (if it's ChatID-enabled) and add it to the
@@ -38,7 +38,7 @@ Experts List.
 argument will be the unique `chatid` handle for the given brand:
 
 ```javascript
-CID('mapBrand', /* brandName */, function(chatid) { // callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument
+CID('chatids.lookup.byBrand', /* brandName */, function(chatid) { // callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument
   // perform additional actions with this identifier, such as adding a CTA
 });
 ```
@@ -48,9 +48,9 @@ CID('mapBrand', /* brandName */, function(chatid) { // callback will fire if thi
 Configure CTAs
 --------------
 
-#### insertCTA
+#### ctas.insert
 
-CID('**insertCTA**', *cta*)
+CID('**ctas.insert**', *cta*)
 
 Add a call to action to the page. `cta` should be an object with the following structure:
 
@@ -78,13 +78,13 @@ metadata for its context:
 }
 ```
 
-`insertCTA` will call `addChatId` internally if you haven't done so already.
+`ctas.insert` will call `chatids.add` internally if you haven't done so already.
 
 In the following example we append a CTA to some element with an ID of `chatid-cta`,
 using dynamic text within the button:
 
 ```javascript
-CID('insertCTA', {
+CID('ctas.insert', {
   chatid: 'chatid.echo',
   container: 'chatid-cta',
   settings: {
@@ -98,22 +98,22 @@ CID('insertCTA', {
 Logging Events
 --------------
 
-#### log
+#### events.log
 
-CID('**log**', *eventName*, *args...*)
+CID('**events.log**', *eventName*, *args...*)
 
 Log events for collecting metrics and analytics. `eventName` will be the key for which
 this unique behavior will be indexed. `args` may be any number of additional arguments
 relevant to the event.
 
-#### log - product
+#### events.log - product
 
-CID('**log**', '**product**', *productData*)
+CID('**events.log**', '**product**', *productData*)
 
-Here is an example using the `log` method to send Chatbar metadata on a PDP:
+Here is an example using the `events.log` method to send Chatbar metadata on a PDP:
 
 ```javascript
-CID('log', 'product', {
+CID('events.log', 'product', {
   brand: 'Seagate', // brand name
   merchant_sku: '654321', // retailer-specific SKU
   model: 'ABCDEF', // vendor-provided model number/identifier
@@ -125,17 +125,17 @@ CID('log', 'product', {
 });
 ```
 
-#### log - conversion
+#### events.log - conversion
 
-CID('**log**', '**conversion**', *productData1*, *productData2*, ...)
+CID('**events.log**', '**conversion**', *productData1*, *productData2*, ...)
 
-Here is an example using the `log` method to send Chatbar a conversion event:
+Here is an example using the `events.log` method to send Chatbar a conversion event:
 
 ```javascript
 CID(
-  'log', // 1st param is the API method, in this case it's 'log'
-  'conversion', // 2nd param is first argument to the 'log' method, in this case it's 'conversion'
-  { // 3rd param is the 2nd argument to the 'log' method, in this case, the 1st of 2 products purchased
+  'events.log', // 1st param is the API method, in this case it's 'events.log'
+  'conversion', // 2nd param is first argument to the 'events.log' method, in this case it's 'conversion'
+  { // 3rd param is the 2nd argument to the 'events.log' method, in this case, the 1st of 2 products purchased
     brand: 'Acer',
     merchant_sku: '123456',
     model: 'ABCDEF',

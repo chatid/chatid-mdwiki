@@ -31,7 +31,7 @@ If you have access to the ChatID-specific identifier for this brand (an all lowe
 string), you may add their CTA straight away:
 
 ```javascript
-CID('insertCTA', {
+CID('ctas.insert', {
   chatid: 'ergotron',
   container: '#chatid-cta-pdp',
   settings: {
@@ -40,18 +40,18 @@ CID('insertCTA', {
 });
 ```
 
-*Reference*: [insertCTA](public-api-reference.md#insertCTA)
+*Reference*: [ctas.insert](public-api-reference.md#ctas.insert)
 
 **(2) I do not have the `chatid`, and need to obtain it by mapping the brand name**
 
 As part of your Chatbar implementation, ChatID can help map your brand ids to the vendor's
-`chatid`. Simply call [mapBrand](public-api-reference.md#mapBrand) with the name of the
+`chatid`. Simply call [chatids.lookup.byBrand](public-api-reference.md#chatids.lookup.byBrand) with the name of the
 brand and provide a callback function for obtaining the `chatid`, which you can then pass
-to [insertCTA](public-api-reference.md#insertCTA). For example:
+to [ctas.insert](public-api-reference.md#ctas.insert). For example:
 
 ```javascript
-CID('mapBrand', 'Ergotron', function(chatid) {
-  CID('insertCTA', {
+CID('chatids.lookup.byBrand', 'Ergotron', function(chatid) {
+  CID('ctas.insert', {
     chatid: chatid,
     container: '#chatid-cta-pdp',
     settings: {
@@ -61,19 +61,19 @@ CID('mapBrand', 'Ergotron', function(chatid) {
 });
 ```
 
-*Reference*: [mapBrand](public-api-reference.md#mapBrand),
-[insertCTA](public-api-reference.md#insertCTA)
+*Reference*: [chatids.lookup.byBrand](public-api-reference.md#chatids.lookup.byBrand),
+[ctas.insert](public-api-reference.md#ctas.insert)
 
 **NOTE:** Brand mapping will only work *after* ChatID has configured your embed code
 and only for mapping ChatID-enabled brands.
 
 #### Product Detail Page Logging
 
-On product detail pages, use the [log](public-api-reference.md#log) API call with
+On product detail pages, use the [events.log](public-api-reference.md#events.log) API call with
 the `'product'` event:
 
 ```javascript
-CID('log', 'product', {
+CID('events.log', 'product', {
   brand: 'Ergotron',
   merchant_sku: 'N82E16824994063',
   model: '45241026',
@@ -85,16 +85,16 @@ CID('log', 'product', {
 });
 ```
 
-*Reference*: [log - product](public-api-reference.md#log_-_product)
+*Reference*: [events.log - product](public-api-reference.md#events.log_-_product)
 
 #### Confirmation Page Logging
 
-On your confirmation page, use the [log](public-api-reference.md#log) API call with
+On your confirmation page, use the [events.log](public-api-reference.md#events.log) API call with
 the `'conversion'` event. Use additional arguments to pass in all products purchased by
 the user:
 
 ```javascript
-CID('log', 'conversion', {
+CID('events.log', 'conversion', {
     brand: 'Acer',
     merchant_sku: '123456',
     model: 'ABCDEF',
@@ -119,7 +119,7 @@ CID('log', 'conversion', {
 );
 ```
 
-*Reference*: [log - conversion](public-api-reference.md#log_-_conversion)
+*Reference*: [events.log - conversion](public-api-reference.md#events.log_-_conversion)
 
 #### Next
 

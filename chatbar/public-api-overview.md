@@ -35,7 +35,7 @@ first call to "initialize", and no earlier:
 })(window,document,'script','//chatidcdn.com/chatbar/main/stable/1/main.js','CID');
 CID('initialize', { channelName: 'demo.chatbar' });
 // Now make API calls here
-CID('addChatId', 'demo.chatid.echo');
+CID('chatids.add', 'demo.chatid.echo');
 </script>
 <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
 ```
@@ -52,23 +52,23 @@ for the duration of the user's session, with a clock icon to indicate chat histo
 As a user browses your website, the List may update to display relevant experts. Chatbar
 provides a few strategies for performing these updates.
 
-If you know the unique string which identifies the expert, you may simply call `addChatId`
+If you know the unique string which identifies the expert, you may simply call `chatids.add`
 and pass it as the first argument:
 
 ```javascript
-CID('addChatId', 'acer');
+CID('chatids.add', 'acer');
 ```
 
-*Reference*: [addChatId](public-api-reference.md#addChatId)
+*Reference*: [chatids.add](public-api-reference.md#chatids.add)
 
 Configuring CTAs
 ----------------
 
 Chatbar does not appear on your website until the user clicks a call to action (CTA). To
-add CTAs to your page, use the `insertCTA` API method:
+add CTAs to your page, use the `ctas.insert` API method:
 
 ```javascript
-CID('insertCTA', {
+CID('ctas.insert', {
   chatid: 'acer',
   container: '#chatid-cta',
   settings: {
@@ -77,9 +77,9 @@ CID('insertCTA', {
 });
 ```
 
-`insertCTA` will call `addChatId` internally if you haven't done so already.
+`ctas.insert` will call `chatids.add` internally if you haven't done so already.
 
-*Reference*: [insertCTA](public-api-reference.md#insertCTA)
+*Reference*: [ctas.insert](public-api-reference.md#ctas.insert)
 
 **NOTE:** CTAs will not display unless experts are online and available for chat.
 Currently, there is no mechanism for checking expert availability via the public API, so
@@ -90,10 +90,10 @@ Logging Events
 --------------
 
 It is helpful to send Chatbar events to be correlated with a user's chat interactions.
-This can be done by passing any basic data to the `log` API method:
+This can be done by passing any basic data to the `events.log` API method:
 
 ```javascript
-CID('log', 'conversion', {
+CID('events.log', 'conversion', {
     brand: 'Acer',
     merchant_sku: '123456',
     model: 'ABCDEF',
@@ -116,7 +116,7 @@ CID('log', 'conversion', {
 );
 ```
 
-*Reference*: [log](public-api-reference.md#log)
+*Reference*: [events.log](public-api-reference.md#events.log)
 
 #### Next
 
