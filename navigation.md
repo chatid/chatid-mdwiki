@@ -1,4 +1,4 @@
-# ChatID Developer Center
+# ChatID Documentation Center
 
 [Home](index.md)
 [Chatbar]()
