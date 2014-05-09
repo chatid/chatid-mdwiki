@@ -1,8 +1,12 @@
-ChatID Developer Center
+ChatID Documentation Center
 =======================
 
-Thank you for visiting the ChatID developer center!
+Thank you for visiting the ChatID documentation center!
 
 ### Projects
 
 * [Chatbar](chatbar/index.md)
+
+------------------------------------------------------------------------------
+
+[Glossary](glossary.md)
