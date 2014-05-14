@@ -89,9 +89,9 @@ CID('events.log', 'product', {
 
 #### Confirmation Page Logging
 
-On your confirmation page, use the [events.log](public-api-reference.md#events.log) API call with
-the `'conversion'` event. Use additional arguments to pass in all products purchased by
-the user:
+On your confirmation page, use the [events.log](public-api-reference.md#events.log) API
+call with the `'conversion'` event. Use additional arguments to pass in all products the
+user purchased:
 
 ```javascript
 CID('events.log', 'conversion', {
