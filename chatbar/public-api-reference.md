@@ -43,7 +43,7 @@ CID('chatids.lookup.byBrand', /* brandName */, function(chatid) { // callback wi
 });
 ```
 
-[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html)
+[View demo](http://demo.chatid.com/docs-map-brand/index.html)
 
 Configure CTAs
 --------------
@@ -93,7 +93,7 @@ CID('ctas.insert', {
 });
 ```
 
-[View demo](https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html)
+[View demo](http://demo.chatid.com/docs-cta/index.html)
 
 Logging Events
 --------------
