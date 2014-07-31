@@ -1,128 +1,94 @@
-Retailer Implementation Guide
-=============================
+Retailer Implementation Instructions
+====================================
 
-> [Home](index.md) ▸ [Implementation Guides](index.md#Implementation Guides) ▸ **For Retailers**
+ChatID is simple to deploy from any CMS or tag management tool. For assistance with your
+particular system, please contact your Implementation Engineer and arrange an
+implementation support call.
 
-Before following this guide, be sure to review [Getting Started](getting-started.md) and
-[Public API Basics](public-api-overview.md#Basics).
+### Step 1: Global Tag
 
-This guide will cover a few use-cases for Chatbar on a retail website:
+This tag should load on every page of your website.
 
-* [Product Detail Page CTA](retailer-implementation.md#Product_Detail_Page_CTA) - add a CTA to your product detail pages
-* [Product Detail Page Logging](retailer-implementation.md#Product_Detail_Page_Logging) - log product metadata from your PDPs
-* [Confirmation Page Logging](retailer-implementation.md#Confirmation_Page_Logging) - log conversions from your confirmation page
+    <script type='text/javascript'>
+    (function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
+      (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
+      d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
+    })(window,document,'script','https://chatidcdn.com/chatbar/main/stable/1/main.js','CID');
+    CID('initialize', 'example.qa');
+    </script>
+    <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
 
-#### Product Detail Page (PDP) CTA
+### Step 2: PDP Tag
 
-A common use-case for Chatbar on retail websites is a brand-specific call-to-action (CTA)
-on product detail pages.
+In addition to the Global Tag, this tag should load on every product detail page and must
+be configured with basic product metadata using your CMS or tag management tool.
 
-First, add a CTA container element (the `id` can be anything you'd like):
+    <script type='text/javascript'>
+    (function(i,d){i[d]=i[d]||function(){(i[d].q=i[d].q||[]).push(arguments)};})(window,'CID');
+    CID('page.setType', 'pdp', {
+      brand: '{{ brand }}',
+      merchant_sku: '{{ merchant_sku }}',
+      model: '{{ model }}',
+      name: '{{ name }}',
+      unit_price: '{{ unit_price }}',
+      sale_price: '{{ sale_price }}',
+      currency: '{{ currency }}',
+      tags: '{{ tag for tag in tags }}'
+    });
+    </script>
 
-```
-<div id='chatid-cta-pdp'></div>
-```
+### Step 3: Conversion Tag
 
-Next, you must choose the appropriate strategy for rendering this CTA: **(1)** or **(2)**.
+In addition to the Global Tag, this tag should load on the confirmation page and specify basic product metadata for all items purchased.
 
-**(1) I know the `chatid` for this brand**
+    <script type=’text/javascript’>
+    CID('page.setType', 'receipt', [{
+      brand: '{{ brand }}',
+      name: '{{ product_name }}',
+      merchant_sku: '{{ merchant_sku }}',
+      model: '{{ model }}',
+      quantity: {{ quantity }},
+      unit_price: '{{ unit_price }}',
+      sale_price: '{{ sale_price }}',
+      currency: '{{ currency }}',
+      tags: '{{ tag for tag in tags }}'
+    }, ... ]);
+    </script>
 
-If you have access to the ChatID-specific identifier for this brand (an all lowercase
-string), you may add their CTA straight away:
+### Step 4: Confirm Implementation
 
-```javascript
-CID('ctas.insert', {
-  chatid: 'ergotron',
-  container: '#chatid-cta-pdp',
-  settings: {
-    template: "<button data-ref='button'>Chat with Ergotron</button>"
-  }
-});
-```
+Your embed code has been pre-configured for testing purposes. To verify proper
+installation, visit a product detail page and click to chat. Starting a chat will not
+connect to the real vendor indicated, but instead to Echo the friendly ChatID robot.
 
-*Reference*: [ctas.insert](public-api-reference.md#ctas.insert)
+FAQ
+===
 
-**(2) I do not have the `chatid`, and need to obtain it by mapping the brand name**
+#### Does ChatID use any libraries that could conflict with existing code on our site?
+All ChatID code is contained within a JavaScript closure, creating just one global (CID)
+on the window object. CID defines the ChatID namespace and facilitates public API calls.
 
-As part of your Chatbar implementation, ChatID can help map your brand ids to the vendor's
-`chatid`. Simply call [chatids.lookup.byBrand](public-api-reference.md#chatids.lookup.byBrand) with the name of the
-brand and provide a callback function for obtaining the `chatid`, which you can then pass
-to [ctas.insert](public-api-reference.md#ctas.insert). For example:
+#### Can ChatID code block other tags from loading?
+All ChatID code loads asynchronously and is served from chatidcdn.com, our dedicated
+content delivery network.
 
-```javascript
-CID('chatids.lookup.byBrand', 'Ergotron', function(chatid) {
-  CID('ctas.insert', {
-    chatid: chatid,
-    container: '#chatid-cta-pdp',
-    settings: {
-      template: "<button data-ref='button'>Chat with Ergotron</button>"
-    }
-  });
-});
-```
+#### How many round-trip requests does ChatID perform?
+ChatID downloads two JS payloads, one sprite image, and runs two XHR calls per page load.
+All static assets are cached for one hour.
 
-*Reference*: [chatids.lookup.byBrand](public-api-reference.md#chatids.lookup.byBrand),
-[ctas.insert](public-api-reference.md#ctas.insert)
+#### Why does the Global Tag need to be loaded on all pages?
+This is required to enable shoppers to start a chat on one page and continue chatting as
+they browse. The interface will not appear until users click a call to action, and it may
+be hidden or turned off from the settings menu.
 
-**NOTE:** Brand mapping will only work *after* ChatID has configured your embed code
-and only for mapping ChatID-enabled brands.
+#### How long does a user session last?
+Users may close their browser after chatting and still return to view conversation history
+for up to one hour. If they do not return for more than one hour, the ChatID interface
+will be gone and conversation history lost, with all state reset as if starting from the
+beginning.
 
-#### Product Detail Page Logging
-
-On product detail pages, use the [events.log](public-api-reference.md#events.log) API call with
-the `'product'` event:
-
-```javascript
-CID('events.log', 'product', {
-  brand: 'Ergotron',
-  merchant_sku: 'N82E16824994063',
-  model: '45241026',
-  name: 'LX Desk Mount LCD Arm',
-  sale_price: '109.99',
-  unit_price: '109.99',
-  currency: 'USD',
-  tags: ['PCs & Laptops', 'Desktop PCs', 'Monitors', 'Monitor Accessories', 'Ergotron']
-});
-```
-
-*Reference*: [events.log - product](public-api-reference.md#events.log_-_product)
-
-#### Confirmation Page Logging
-
-On your confirmation page, use the [events.log](public-api-reference.md#events.log) API
-call with the `'conversion'` event. Use additional arguments to pass in all products the
-user purchased:
-
-```javascript
-CID('events.log', 'conversion', {
-    brand: 'Acer',
-    merchant_sku: '123456',
-    model: 'ABCDEF',
-    name: 'Aspire A7',
-    quantity: 1,
-    sale_price: '349.99',
-    unit_price: '349.99',
-    currency: 'USD',
-    tags: ['PCs & Laptops', 'Laptops']
-  }, {
-    brand: 'Seagate',
-    merchant_sku: '654321',
-    model: 'ABCDEF',
-    name: '500GB External HDD',
-    quantity: 1,
-    sale_price: '38.99',
-    unit_price: '43.99',
-    currency: 'USD',
-    tags: ['Computer Hardware', 'Hard Drives', 'Internal Hard Drives']
-  }
-  // ... use additional arguments for each product purchased
-);
-```
-
-*Reference*: [events.log - conversion](public-api-reference.md#events.log_-_conversion)
-
-#### Next
-
-* Browse [Examples](demos.md)
-* Read the [API Overview](public-api-overview.md)
-* Explore the [API Reference](public-api-reference.md)
+#### Which browsers does this support?
+ChatID supports IE7 and up along with Chrome, Safari, and Firefox on Mac/Windows/Linux for
+desktop. Mobile support will arrive with Chatbar Mobile beginning Q4 2014. For
+non-supported browsers, ChatID code immediately disables as if it had not been loaded at
+all.
