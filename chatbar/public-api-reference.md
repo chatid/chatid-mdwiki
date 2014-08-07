@@ -19,6 +19,9 @@ CID('**chatids.add**', *chatid*)
 Add a chatid to the Experts List. `chatid` must be a string or an object with a `chatid`
 field.
 
+**NOTE:** Before you can add `chatid`s using the public API, they must be enabled for your
+implementation. Please contact your implementation engineer to have `chatid`s enabled.
+
 #### chatids.addChannel
 
 CID('**chatids.addChannel**', *chatid*)

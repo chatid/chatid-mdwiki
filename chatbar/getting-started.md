@@ -59,6 +59,9 @@ may occasionally go offline, which will cause their CTAs to become hidden. To fu
 understand how Chatbar handles availability, visit
 [Configuring CTAs](public-api-overview.md#Configuring_CTAs).
 
+**NOTE:** Before you can add `chatid`s using the public API, they must be enabled for your
+implementation. Please contact your implementation engineer to have `chatid`s enabled.
+
 #### Next
 
 * Read the [API Overview](public-api-overview.md)
