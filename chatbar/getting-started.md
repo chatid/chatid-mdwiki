@@ -62,6 +62,5 @@ understand how Chatbar handles availability, visit
 #### Next
 
 * Read the [API Overview](public-api-overview.md)
-* Are you a retailer? [Retailer Implementation Guide](retailer-implementation.md)
 * Explore the [API Reference](public-api-reference.md)
 * Browse [Examples](demos.md)
