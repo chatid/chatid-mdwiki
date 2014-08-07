@@ -1,7 +1,7 @@
 Public API Overview
 ===================
 
-> [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Overview**
+> [Chatbar](index.md) ▸ [Public API](index.md#Public_API) ▸ **Overview**
 
 For further documentation, please visit the
 [complete API reference](public-api-reference.md).
@@ -33,7 +33,7 @@ first call to "initialize", and no earlier:
   (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
   d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
 })(window,document,'script','//chatidcdn.com/chatbar/main/stable/1/main.js','CID');
-CID('initialize', { channelName: 'demo.chatbar' });
+CID('initialize', 'demo.chatbar');
 // Now make API calls here
 CID('chatids.add', 'demo.chatid.echo');
 </script>
@@ -86,40 +86,7 @@ Currently, there is no mechanism for checking expert availability via the public
 all configuration should be done with the awareness that CTAs tied to unavailable chatids
 will simply not appear.
 
-Logging Events
---------------
-
-It is helpful to send Chatbar events to be correlated with a user's chat interactions.
-This can be done by passing any basic data to the `events.log` API method:
-
-```javascript
-CID('events.log', 'conversion', {
-    brand: 'Acer',
-    merchant_sku: '123456',
-    model: 'ABCDEF',
-    name: 'Aspire A7',
-    quantity: 1,
-    sale_price: '349.99',
-    unit_price: '349.99',
-    currency: 'USD'
-  }, {
-    brand: 'Seagate',
-    merchant_sku: '654321',
-    model: 'ABCDEF',
-    name: '500GB External HDD',
-    quantity: 1,
-    sale_price: '38.99',
-    unit_price: '43.99',
-    currency: 'USD'
-  }
-  // ... use additional arguments for each product purchased
-);
-```
-
-*Reference*: [events.log](public-api-reference.md#events.log)
-
 #### Next
 
-* Are you a retailer? [Retailer Implementation Guide](retailer-implementation.md)
 * Dig deeper with the [API Reference](public-api-reference.md)
 * Browse [Examples](demos.md)

@@ -1,7 +1,7 @@
 Public API Reference
 ====================
 
-> [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Reference**
+> [Chatbar](index.md) ▸ [Public API](index.md#Public_API) ▸ **Reference**
 
 * [chatids.add](public-api-reference.md#chatids.add) - add a chatid to the Experts List
 * [chatids.addChannel](public-api-reference.md#chatids.addChannel) - add a channel to the Experts List
@@ -43,7 +43,7 @@ CID('chatids.lookup.byBrand', /* brandName */, function(chatid) { // callback wi
 });
 ```
 
-[View demo](http://demo.chatid.com/docs-map-brand/index.html)
+[View demo](http://demo.chatid.com/chatbar/docs-map-brand/index.html)
 
 Configure CTAs
 --------------
@@ -93,7 +93,7 @@ CID('ctas.insert', {
 });
 ```
 
-[View demo](http://demo.chatid.com/docs-cta/index.html)
+[View demo](http://demo.chatid.com/chatbar/docs-cta/index.html)
 
 Logging Events
 --------------

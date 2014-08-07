@@ -1,7 +1,7 @@
 Demos
 =====
 
-> [Home](index.md) ▸ [Examples](index.md#Examples) ▸ **Demos**
+> [Chatbar](index.md) ▸ [Examples](index.md#Examples) ▸ **Demos**
 
 ## Chat with Echo
 

@@ -1,7 +1,7 @@
 Screenshots
 ===========
 
-> [Home](index.md) ▸ [Examples](index.md#Examples) ▸ **Screenshots**
+> [Chatbar](index.md) ▸ [Examples](index.md#Examples) ▸ **Screenshots**
 
 Open the first screenshot and toggle through the flow using your arrow keys.
 

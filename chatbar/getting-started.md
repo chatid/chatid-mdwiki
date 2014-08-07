@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-> [Home](index.md) ▸ [Overview](index.md#Overview) ▸ **Getting Started**
+> [Chatbar](index.md) ▸ [Overview](index.md#Overview) ▸ **Getting Started**
 
 To get started, add your Chatbar embed code to all pages. Your embed code looks like the
 following, with `demo.chatbar` swapped for your client's identifier (usually your
@@ -14,7 +14,7 @@ company's name):
   (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
   d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
 })(window,document,'script','//chatidcdn.com/chatbar/main/stable/1/main.js','CID');
-CID('initialize', { channelName: 'demo.chatbar' });
+CID('initialize', 'demo.chatbar');
 </script>
 <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
 <!-- End ChatID Chatbar -->
