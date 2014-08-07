@@ -42,6 +42,7 @@ be configured with basic product metadata using your CMS or tag management tool.
 In addition to the Global Tag, this tag should load on the confirmation page and specify basic product metadata for all items purchased.
 
     <script type=’text/javascript’>
+    (function(i,d){i[d]=i[d]||function(){(i[d].q=i[d].q||[]).push(arguments)};})(window,'CID');
     CID('page.setType', 'receipt', [{
       brand: '{{ brand }}',
       name: '{{ product_name }}',
