@@ -26,33 +26,34 @@ be configured with basic product metadata using your CMS or tag management tool.
     <script type='text/javascript'>
     (function(i,d){i[d]=i[d]||function(){(i[d].q=i[d].q||[]).push(arguments)};})(window,'CID');
     CID('page.setType', 'pdp', {
-      brand: '{{ brand }}',
-      merchant_sku: '{{ merchant_sku }}',
-      model: '{{ model }}',
-      name: '{{ name }}',
-      unit_price: '{{ unit_price }}',
-      sale_price: '{{ sale_price }}',
-      currency: '{{ currency }}',
-      tags: '{{ tag for tag in tags }}'
+      brand: '{{ brand }}', // (String) Product manufacturer's name
+      name: '{{ product_name }}', // (String) Product name
+      merchant_sku: '{{ merchant_sku }}', // (String) Retailer-issued SKU or product identifier
+      model: '{{ model }}', // (String) Manufacturer-issued model number or product identifier
+      unit_price: '{{ unit_price }}', // (String) Original product price, without discounts applied
+      sale_price: '{{ sale_price }}', // (String) Same as unit_price if item is not on sale
+      currency: '{{ currency }}', // (String) i.e. 'USD'
+      tags: {{ tag for tag in tags }} // (Array) Tags/categories associated with the product
     });
     </script>
 
 ### Step 3: Conversion Tag
 
-In addition to the Global Tag, this tag should load on the confirmation page and specify basic product metadata for all items purchased.
+In addition to the Global Tag, this tag should load on the confirmation page and specify
+basic product metadata for all items purchased.
 
     <script type=’text/javascript’>
     (function(i,d){i[d]=i[d]||function(){(i[d].q=i[d].q||[]).push(arguments)};})(window,'CID');
     CID('page.setType', 'receipt', [{
-      brand: '{{ brand }}',
-      name: '{{ product_name }}',
-      merchant_sku: '{{ merchant_sku }}',
-      model: '{{ model }}',
-      quantity: {{ quantity }},
-      unit_price: '{{ unit_price }}',
-      sale_price: '{{ sale_price }}',
-      currency: '{{ currency }}',
-      tags: '{{ tag for tag in tags }}'
+      brand: '{{ brand }}', // (String) Product manufacturer's name
+      name: '{{ product_name }}', // (String) Product name
+      merchant_sku: '{{ merchant_sku }}', // (String) Retailer-issued SKU or product identifier
+      model: '{{ model }}', // (String) Manufacturer-issued model number or product identifier
+      quantity: {{ quantity }}, // (Integer) Quantity of this item purchased
+      unit_price: '{{ unit_price }}', // (String) Original product price, without discounts applied
+      sale_price: '{{ sale_price }}', // (String) Same as unit_price if item is not on sale
+      currency: '{{ currency }}', // (String) i.e. 'USD'
+      tags: {{ tag for tag in tags }} // (Array) Tags/categories associated with the product
     }, ... ]);
     </script>
 
