@@ -33,7 +33,7 @@ be configured with basic product metadata using your CMS or tag management tool.
       unit_price: '{{ unit_price }}',     // (String) Original product price, without discounts applied
       sale_price: '{{ sale_price }}',     // (String) Same as unit_price if item is not on sale
       currency: '{{ currency }}',         // (String) i.e. 'USD'
-      tags: {{ tags }}     // (Array) Tags/categories associated with the product
+      tags: {{ tags }}                    // (Array) Tags/categories associated with the product
     });
     </script>
 
@@ -53,7 +53,7 @@ basic product metadata for all items purchased.
       unit_price: '{{ unit_price }}',     // (String) Original product price, without discounts applied
       sale_price: '{{ sale_price }}',     // (String) Same as unit_price if item is not on sale
       currency: '{{ currency }}',         // (String) i.e. 'USD'
-      tags: {{ tags }}     // (Array) Tags/categories associated with the product
+      tags: {{ tags }}                    // (Array) Tags/categories associated with the product
     }, ... ]);
     </script>
 
