@@ -7,14 +7,17 @@ implementation support call.
 
 ### Step 1: Global Tag
 
-This tag should load on every page of your website.
+This tag should load on every page of your website. The only setting that should be
+modified for your implementation is the **channel identifier**, which in this sample code
+is `example.qa`. You should have one identifier for testing (suffixed with `.qa`), and one
+for production.
 
     <script type='text/javascript'>
     (function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
       (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
       d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
     })(window,document,'script','https://chatidcdn.com/chatbar/main/stable/1/main.js','CID');
-    CID('initialize', 'example.qa');
+    CID('initialize', 'example.qa'); // <-- Substitute your channel identifier.
     </script>
     <noscript><img src='https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D' width='1' height='1' /></noscript>
 
