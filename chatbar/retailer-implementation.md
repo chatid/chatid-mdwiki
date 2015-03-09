@@ -93,7 +93,7 @@ will be gone and conversation history lost, with all state reset as if starting 
 beginning.
 
 #### Which browsers does this support?
-ChatID supports IE7 and up along with Chrome, Safari, and Firefox on Mac/Windows/Linux for
-desktop. Mobile support will arrive with Chatbar Mobile beginning Q4 2014. For
+ChatID supports IE7 and up along with Chrome, Safari, Firefox, and Opera on Mac/Windows/Linux
+for desktop. Mobile support will arrive with Chatbar Mobile beginning Q4 2014. For
 non-supported browsers, ChatID code immediately disables as if it had not been loaded at
 all.
