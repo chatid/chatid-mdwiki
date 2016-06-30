@@ -13,6 +13,6 @@ Network from any website. It was designed to accomplish the following goals:
 
 #### Next
 
-* [Getting Started](getting-started.md)
-* Browse [Screenshots](screenshots.md)
-* Browse [Examples](demos.md)
+* [Getting Started](#getting-started)
+* Browse [Screenshots](#screenshots)
+* Browse [Examples](#demos)

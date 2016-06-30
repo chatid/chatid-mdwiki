@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#getting-started"><span class="toc-section-number">2</span> Getting Started</a></li>
+<li><a href="#retailer-implementation-guide"><span class="toc-section-number">3</span> Retailer Implementation Guide</a></li>
+<li><a href="#public-api-overview"><span class="toc-section-number">4</span> Public API Overview</a><ul>
+<li><a href="#basics"><span class="toc-section-number">4.1</span> Basics</a></li>
+<li><a href="#the-experts-list"><span class="toc-section-number">4.2</span> The Experts List</a></li>
+<li><a href="#configuring-ctas"><span class="toc-section-number">4.3</span> Configuring CTAs</a></li>
+<li><a href="#logging-events"><span class="toc-section-number">4.4</span> Logging Events</a></li>
+</ul></li>
+<li><a href="#public-api-reference"><span class="toc-section-number">5</span> Public API Reference</a><ul>
+<li><a href="#adding-to-the-experts-list"><span class="toc-section-number">5.1</span> Adding to the Experts List</a></li>
+<li><a href="#configure-ctas"><span class="toc-section-number">5.2</span> Configure CTAs</a></li>
+<li><a href="#logging-events-1"><span class="toc-section-number">5.3</span> Logging Events</a></li>
+</ul></li>
+<li><a href="#demos"><span class="toc-section-number">6</span> Demos</a><ul>
+<li><a href="#chat-with-echo"><span class="toc-section-number">6.1</span> Chat with Echo</a></li>
+<li><a href="#provide-a-dynamic-template-for-the-cta"><span class="toc-section-number">6.2</span> Provide a dynamic template for the CTA</a></li>
+<li><a href="#add-experts-by-mapping-a-brand-to-its-chatid"><span class="toc-section-number">6.3</span> Add experts by mapping a brand to it’s chatid</a></li>
+</ul></li>
+<li><a href="#screenshots"><span class="toc-section-number">7</span> Screenshots</a><ul>
+<li><a href="#for-retailers"><span class="toc-section-number">7.0.1</span> For retailers</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Overview">Overview</a> ▸ <strong>Introduction</strong></p>
+</blockquote>
+<p>Chatbar is a flexible, interactive JavaScript component for connecting to the ChatID<br />Network from any website. It was designed to accomplish the following goals:</p>
+<ul>
+<li>Facilitate chat with brands and retailers anywhere<br /></li>
+<li>Fit seamlessly into a shopper’s browsing process<br /></li>
+<li>Intuitive to navigate &amp; accessible from any desktop browser<br /></li>
+<li>Simple to integrate</li>
+</ul>
+<h4 id="next"><span class="header-section-number">1.0.0.1</span> Next</h4>
+<ul>
+<li><a href="#getting-started">Getting Started</a><br /></li>
+<li>Browse <a href="#screenshots">Screenshots</a><br /></li>
+<li>Browse <a href="#demos">Examples</a></li>
+</ul>
+<h1 id="getting-started"><span class="header-section-number">2</span> Getting Started</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Overview">Overview</a> ▸ <strong>Getting Started</strong></p>
+</blockquote>
+<p>To get started, add your Chatbar embed code to all pages. Your embed code looks like the<br />following, with <code>demo.chatbar</code> swapped for your client’s identifier (usually your<br />company’s name):</p>
+<pre><code>&lt;!-- ChatID Chatbar --&gt;
+&lt;script type=&#39;text/javascript&#39;&gt;
+(function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
+  (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
+  d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
+})(window,document,&#39;script&#39;,&#39;//chatidcdn.com/chatbar/main/stable/1/main.js&#39;,&#39;CID&#39;);
+CID(&#39;initialize&#39;, { channelName: &#39;demo.chatbar&#39; });
+&lt;/script&gt;
+&lt;noscript&gt;&lt;img src=&#39;https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D&#39; width=&#39;1&#39; height=&#39;1&#39; /&gt;&lt;/noscript&gt;
+&lt;!-- End ChatID Chatbar --&gt;</code></pre>
+<p>While Chatbar does not display by default, the JavaScript must be available across your<br />website to ensure seamless chatting page to page.</p>
+<p>After adding your Chatbar embed code to all pages, there are just 2 additional steps<br />before it’s ready:</p>
+<ul>
+<li>Add calls to action (CTAs)<br /></li>
+<li>Populate the Experts List</li>
+</ul>
+<p>Both can be accomplished using Chatbar’s <a href="public-api-overview.md">public API</a>. Add the<br />following API call so you can chat with Echo, the friendly ChatID robot:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;ctas.insert&#39;</span>, {
+  <span class="dt">chatid</span>: <span class="st">&#39;demo.chatid.echo&#39;</span>,
+  <span class="dt">container</span>: <span class="st">&#39;#chatid-cta&#39;</span>,
+  <span class="dt">settings</span>: {
+    <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat with Echo&lt;/button&gt;&quot;</span>
+  }
+});</code></pre>
+<p>And then add an HTML container with an <code>id</code> of <code>chatid-cta</code>:</p>
+<pre><code>&lt;div id=&#39;chatid-cta&#39;&gt;&lt;/div&gt;</code></pre>
+<p>That’s it! Open the HTML page and fire off a test chat. You should see something similar<br />to <a href="http://demo.chatid.com/chatbar/docs-echo/index.html">this demo</a>.</p>
+<p><strong>HINT:</strong> The HTML page must be served by a webserver for chat to work properly. For<br />debugging, try the node.js npm module, <code>http-server</code> or <code>python -m SimpleHTTPServer</code>.</p>
+<p><strong>NOTE:</strong> While Echo the robot is available for chat 24/7, experts in the ChatID Network<br />may occasionally go offline, which will cause their CTAs to become hidden. To further<br />understand how Chatbar handles availability, visit<br /><a href="public-api-overview.md#Configuring_CTAs">Configuring CTAs</a>.</p>
+<h4 id="next-1"><span class="header-section-number">2.0.0.1</span> Next</h4>
+<ul>
+<li>Read the <a href="public-api-overview.md">API Overview</a><br /></li>
+<li>Are you a retailer? <a href="retailer-implementation.md">Retailer Implementation Guide</a><br /></li>
+<li>Explore the <a href="public-api-reference.md">API Reference</a><br /></li>
+<li>Browse <a href="demos.md">Examples</a></li>
+</ul>
+<h1 id="retailer-implementation-guide"><span class="header-section-number">3</span> Retailer Implementation Guide</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Implementation%20Guides">Implementation Guides</a> ▸ <strong>For Retailers</strong></p>
+</blockquote>
+<p>Before following this guide, be sure to review <a href="getting-started.md">Getting Started</a> and<br /><a href="public-api-overview.md#Basics">Public API Basics</a>.</p>
+<p>This guide will cover a few use-cases for Chatbar on a retail website:</p>
+<ul>
+<li><a href="retailer-implementation.md#Product_Detail_Page_CTA">Product Detail Page CTA</a> - add a CTA to your product detail pages<br /></li>
+<li><a href="retailer-implementation.md#Product_Detail_Page_Logging">Product Detail Page Logging</a> - log product metadata from your PDPs<br /></li>
+<li><a href="retailer-implementation.md#Confirmation_Page_Logging">Confirmation Page Logging</a> - log conversions from your confirmation page</li>
+</ul>
+<h4 id="product-detail-page-pdp-cta"><span class="header-section-number">3.0.0.1</span> Product Detail Page (PDP) CTA</h4>
+<p>A common use-case for Chatbar on retail websites is a brand-specific call-to-action (CTA)<br />on product detail pages.</p>
+<p>First, add a CTA container element (the <code>id</code> can be anything you’d like):</p>
+<pre><code>&lt;div id=&#39;chatid-cta-pdp&#39;&gt;&lt;/div&gt;</code></pre>
+<p>Next, you must choose the appropriate strategy for rendering this CTA: <strong>(1)</strong> or <strong>(2)</strong>.</p>
+<p><strong>(1) I know the <code>chatid</code> for this brand</strong></p>
+<p>If you have access to the ChatID-specific identifier for this brand (an all lowercase<br />string), you may add their CTA straight away:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;ctas.insert&#39;</span>, {
+  <span class="dt">chatid</span>: <span class="st">&#39;ergotron&#39;</span>,
+  <span class="dt">container</span>: <span class="st">&#39;#chatid-cta-pdp&#39;</span>,
+  <span class="dt">settings</span>: {
+    <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat with Ergotron&lt;/button&gt;&quot;</span>
+  }
+});</code></pre>
+<p><em>Reference</em>: <a href="public-api-reference.md#ctas.insert">ctas.insert</a></p>
+<p><strong>(2) I do not have the <code>chatid</code>, and need to obtain it by mapping the brand name</strong></p>
+<p>As part of your Chatbar implementation, ChatID can help map your brand ids to the vendor’s<br /><code>chatid</code>. Simply call <a href="public-api-reference.md#chatids.lookup.byBrand">chatids.lookup.byBrand</a> with the name of the<br />brand and provide a callback function for obtaining the <code>chatid</code>, which you can then pass<br />to <a href="public-api-reference.md#ctas.insert">ctas.insert</a>. For example:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;chatids.lookup.byBrand&#39;</span>, <span class="st">&#39;Ergotron&#39;</span>, <span class="kw">function</span>(chatid) {
+  <span class="fu">CID</span>(<span class="st">&#39;ctas.insert&#39;</span>, {
+    <span class="dt">chatid</span>: chatid,
+    <span class="dt">container</span>: <span class="st">&#39;#chatid-cta-pdp&#39;</span>,
+    <span class="dt">settings</span>: {
+      <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat with Ergotron&lt;/button&gt;&quot;</span>
+    }
+  });
+});</code></pre>
+<p><em>Reference</em>: <a href="public-api-reference.md#chatids.lookup.byBrand">chatids.lookup.byBrand</a>,<br /><a href="public-api-reference.md#ctas.insert">ctas.insert</a></p>
+<p><strong>NOTE:</strong> Brand mapping will only work <em>after</em> ChatID has configured your embed code<br />and only for mapping ChatID-enabled brands.</p>
+<h4 id="product-detail-page-logging"><span class="header-section-number">3.0.0.2</span> Product Detail Page Logging</h4>
+<p>On product detail pages, use the <a href="public-api-reference.md#events.log">events.log</a> API call with<br />the <code>'product'</code> event:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;events.log&#39;</span>, <span class="st">&#39;product&#39;</span>, {
+  <span class="dt">brand</span>: <span class="st">&#39;Ergotron&#39;</span>,
+  <span class="dt">merchant_sku</span>: <span class="st">&#39;N82E16824994063&#39;</span>,
+  <span class="dt">model</span>: <span class="st">&#39;45241026&#39;</span>,
+  <span class="dt">name</span>: <span class="st">&#39;LX Desk Mount LCD Arm&#39;</span>,
+  <span class="dt">sale_price</span>: <span class="st">&#39;109.99&#39;</span>,
+  <span class="dt">unit_price</span>: <span class="st">&#39;109.99&#39;</span>,
+  <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>,
+  <span class="dt">tags</span>: [<span class="st">&#39;PCs &amp; Laptops&#39;</span>, <span class="st">&#39;Desktop PCs&#39;</span>, <span class="st">&#39;Monitors&#39;</span>, <span class="st">&#39;Monitor Accessories&#39;</span>, <span class="st">&#39;Ergotron&#39;</span>]
+});</code></pre>
+<p><em>Reference</em>: <a href="public-api-reference.md#events.log_-_product">events.log - product</a></p>
+<h4 id="confirmation-page-logging"><span class="header-section-number">3.0.0.3</span> Confirmation Page Logging</h4>
+<p>On your confirmation page, use the <a href="public-api-reference.md#events.log">events.log</a> API call with<br />the <code>'conversion'</code> event. Use additional arguments to pass in all products purchased by<br />the user:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;events.log&#39;</span>, <span class="st">&#39;conversion&#39;</span>, {
+    <span class="dt">brand</span>: <span class="st">&#39;Acer&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;123456&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;Aspire A7&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>,
+    <span class="dt">tags</span>: [<span class="st">&#39;PCs &amp; Laptops&#39;</span>, <span class="st">&#39;Laptops&#39;</span>]
+  }, {
+    <span class="dt">brand</span>: <span class="st">&#39;Seagate&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;654321&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;500GB External HDD&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;38.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;43.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>,
+    <span class="dt">tags</span>: [<span class="st">&#39;Computer Hardware&#39;</span>, <span class="st">&#39;Hard Drives&#39;</span>, <span class="st">&#39;Internal Hard Drives&#39;</span>]
+  }
+  <span class="co">// ... use additional arguments for each product purchased</span>
+);</code></pre>
+<p><em>Reference</em>: <a href="public-api-reference.md#events.log_-_conversion">events.log - conversion</a></p>
+<h4 id="next-2"><span class="header-section-number">3.0.0.4</span> Next</h4>
+<ul>
+<li>Browse <a href="demos.md">Examples</a><br /></li>
+<li>Read the <a href="public-api-overview.md">API Overview</a><br /></li>
+<li>Explore the <a href="public-api-reference.md">API Reference</a></li>
+</ul>
+<h1 id="public-api-overview"><span class="header-section-number">4</span> Public API Overview</h1>
+<blockquote>
+<p><a href="">Home</a> ▸ <a href="#Public_API">Public API</a> ▸ <strong>Overview</strong></p>
+</blockquote>
+<p>For further documentation, please visit the<br /><a href="">complete API reference</a>.</p>
+<h2 id="basics"><span class="header-section-number">4.1</span> Basics</h2>
+<h4 id="asynchronous-loading"><span class="header-section-number">4.1.0.1</span> Asynchronous Loading</h4>
+<p><em>Adapted from <a href="#https://developers.google.com/analytics/devguides/collection/gajs/">ga.js</a></em></p>
+<p>The <code>CID</code> object is your interface for asynchornously calling the Chatbar public API.<br />It acts as a queue, which is a first-in, first-out data structure that collects API calls<br />until Chatbar is ready to execute them. To add something to the queue, call <code>CID</code> with the<br />method name as the first argument:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;&lt;method&gt;&#39;</span>, <span class="ot">args</span>...)</code></pre>
+<h4 id="where-to-place-api-calls"><span class="header-section-number">4.1.0.2</span> Where to place API calls</h4>
+<p>Calls to the Public API should be placed directly after your embed code, following the<br />first call to “initialize”, and no earlier:</p>
+<pre><code>&lt;script type=&#39;text/javascript&#39;&gt;
+(function(c,h,a,t,_,i,d){c[_]=c[_]||function(){
+  (c[_].q=c[_].q||[]).push(arguments)},c[_].l=1*new Date();i=h.createElement(a),
+  d=h.getElementsByTagName(a)[0];i.async=1;i.src=t;d.parentNode.insertBefore(i,d)
+})(window,document,&#39;script&#39;,&#39;//chatidcdn.com/chatbar/main/stable/1/main.js&#39;,&#39;CID&#39;);
+CID(&#39;initialize&#39;, { channelName: &#39;demo.chatbar&#39; });
+// Now make API calls here
+CID(&#39;chatids.add&#39;, &#39;demo.chatid.echo&#39;);
+&lt;/script&gt;
+&lt;noscript&gt;&lt;img src=&#39;https://ls.chatid.com/p.gif?data=%7B%22code%22%3A%22noscript%22%7D&#39; width=&#39;1&#39; height=&#39;1&#39; /&gt;&lt;/noscript&gt;</code></pre>
+<h2 id="the-experts-list"><span class="header-section-number">4.2</span> The Experts List</h2>
+<p>The Experts List (also known as the Buddy List) is a panel within Chatbar that displays<br />the experts available for chat. Upon starting a chat, the expert will remain in the List<br />for the duration of the user’s session, with a clock icon to indicate chat history:</p>
+<p><img src="#./assets/screens/screen11.png" title="Experts List with just one ChatID (Acer)" /></p>
+<p>As a user browses your website, the List may update to display relevant experts. Chatbar<br />provides a few strategies for performing these updates.</p>
+<p>If you know the unique string which identifies the expert, you may simply call <code>chatids.add</code><br />and pass it as the first argument:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;chatids.add&#39;</span>, <span class="st">&#39;acer&#39;</span>);</code></pre>
+<p><em>Reference</em>: <a href="#chatids.add">chatids.add</a></p>
+<h2 id="configuring-ctas"><span class="header-section-number">4.3</span> Configuring CTAs</h2>
+<p>Chatbar does not appear on your website until the user clicks a call to action (CTA). To<br />add CTAs to your page, use the <code>ctas.insert</code> API method:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;ctas.insert&#39;</span>, {
+  <span class="dt">chatid</span>: <span class="st">&#39;acer&#39;</span>,
+  <span class="dt">container</span>: <span class="st">&#39;#chatid-cta&#39;</span>,
+  <span class="dt">settings</span>: {
+    <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat now&lt;/button&gt;&quot;</span>
+  }
+});</code></pre>
+<p><code>ctas.insert</code> will call <code>chatids.add</code> internally if you haven’t done so already.</p>
+<p><em>Reference</em>: <a href="#ctas.insert">ctas.insert</a></p>
+<p><strong>NOTE:</strong> CTAs will not display unless experts are online and available for chat.<br />Currently, there is no mechanism for checking expert availability via the public API, so<br />all configuration should be done with the awareness that CTAs tied to unavailable chatids<br />will simply not appear.</p>
+<h2 id="logging-events"><span class="header-section-number">4.4</span> Logging Events</h2>
+<p>It is helpful to send Chatbar events to be correlated with a user’s chat interactions.<br />This can be done by passing any basic data to the <code>events.log</code> API method:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;events.log&#39;</span>, <span class="st">&#39;conversion&#39;</span>, {
+    <span class="dt">brand</span>: <span class="st">&#39;Acer&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;123456&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;Aspire A7&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>
+  }, {
+    <span class="dt">brand</span>: <span class="st">&#39;Seagate&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;654321&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;500GB External HDD&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;38.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;43.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>
+  }
+  <span class="co">// ... use additional arguments for each product purchased</span>
+);</code></pre>
+<p><em>Reference</em>: <a href="#events.log">events.log</a></p>
+<h4 id="next-3"><span class="header-section-number">4.4.0.1</span> Next</h4>
+<ul>
+<li>Are you a retailer? <a href="">Retailer Implementation Guide</a><br /></li>
+<li>Dig deeper with the <a href="">API Reference</a><br /></li>
+<li>Browse <a href="">Examples</a></li>
+</ul>
+<h1 id="public-api-reference"><span class="header-section-number">5</span> Public API Reference</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Public_API">Public API</a> ▸ <strong>Reference</strong></p>
+</blockquote>
+<ul>
+<li><a href="public-api-reference.md#chatids.add">chatids.add</a> - add a chatid to the Experts List<br /></li>
+<li><a href="public-api-reference.md#chatids.addChannel">chatids.addChannel</a> - add a channel to the Experts List<br /></li>
+<li><a href="public-api-reference.md#chatids.lookup.byBrand">chatids.lookup.byBrand</a> - add a chatid via brand name<br /></li>
+<li><a href="public-api-reference.md#ctas.insert">ctas.insert</a> - add a call to action<br /></li>
+<li><a href="public-api-reference.md#events.log">events.log</a> - log events for ChatID analysis</li>
+</ul>
+<h2 id="adding-to-the-experts-list"><span class="header-section-number">5.1</span> Adding to the Experts List</h2>
+<h4 id="chatids.add"><span class="header-section-number">5.1.0.1</span> chatids.add</h4>
+<p>CID(‘<strong>chatids.add</strong>’, <em>chatid</em>)</p>
+<p>Add a chatid to the Experts List. <code>chatid</code> must be a string or an object with a <code>chatid</code><br />field.</p>
+<h4 id="chatids.addchannel"><span class="header-section-number">5.1.0.2</span> chatids.addChannel</h4>
+<p>CID(‘<strong>chatids.addChannel</strong>’, <em>chatid</em>)</p>
+<p>The same as <code>chatids.add</code> but will be displayed with a star symbol at the top of the<br />Experts List to indicate an expert from the host website.</p>
+<h4 id="chatids.lookup.bybrand"><span class="header-section-number">5.1.0.3</span> chatids.lookup.byBrand</h4>
+<p>CID(‘<strong>chatids.lookup.byBrand</strong>’, <em>brandName</em>, <em>callback</em>)</p>
+<p>Add a chatid to the Experts List using the brand name. Chatbar will use this metadata to<br />determine the brand’s unique chat handle (if it’s ChatID-enabled) and add it to the<br />Experts List.</p>
+<p><code>callback</code> is an optional function to be called if the brand is ChatID-enabled. The first<br />argument will be the unique <code>chatid</code> handle for the given brand:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;chatids.lookup.byBrand&#39;</span>, <span class="co">/* brandName */</span>, <span class="kw">function</span>(chatid) { <span class="co">// callback will fire if this brand is ChatID-enabled, with the `chatid` handle for the first argument</span>
+  <span class="co">// perform additional actions with this identifier, such as adding a CTA</span>
+});</code></pre>
+<p><a href="https://s3.amazonaws.com/chatid-mojo/g/context/docs-map-brand/index.html">View demo</a></p>
+<h2 id="configure-ctas"><span class="header-section-number">5.2</span> Configure CTAs</h2>
+<h4 id="ctas.insert"><span class="header-section-number">5.2.0.1</span> ctas.insert</h4>
+<p>CID(‘<strong>ctas.insert</strong>’, <em>cta</em>)</p>
+<p>Add a call to action to the page. <code>cta</code> should be an object with the following structure:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">{
+  <span class="dt">chatid</span>: <span class="st">&#39;acer&#39;</span>, <span class="co">// the unique brand identifier to which this CTA is tied</span>
+  <span class="dt">container</span>: <span class="st">&#39;#chatid-cta&#39;</span>, <span class="co">// a DOM element or a jQuery selector string</span>
+  <span class="dt">settings</span>: { <span class="co">// an object with a `template` field</span>
+    <span class="co">// HTML to inject within `container`, the clickable element must specify data-ref=&#39;button&#39;</span>
+    <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat now&lt;/button&gt;&quot;</span>
+  }
+}</code></pre>
+<p><code>template</code> may also be a JavaScript template for use with<br /><a href="http://underscorejs.org/#template">_.template</a>. It will be rendered with the following<br />metadata for its context:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">{
+  <span class="dt">active</span>: <span class="kw">false</span>, <span class="co">// whether the user already has an active conversation with this `chatid`</span>
+  <span class="dt">available</span>: <span class="kw">true</span>, <span class="co">// whether any agents are available</span>
+  <span class="dt">label</span>: <span class="st">&#39;Acer&#39;</span>, <span class="co">// presentable display name for this `chatid`</span>
+  <span class="dt">channel</span>: <span class="kw">false</span> <span class="co">// boolean to specify if this chatid is owned by the hosting channel</span>
+}</code></pre>
+<p><code>ctas.insert</code> will call <code>chatids.add</code> internally if you haven’t done so already.</p>
+<p>In the following example we append a CTA to some element with an ID of <code>chatid-cta</code>,<br />using dynamic text within the button:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;ctas.insert&#39;</span>, {
+  <span class="dt">chatid</span>: <span class="st">&#39;chatid.echo&#39;</span>,
+  <span class="dt">container</span>: <span class="st">&#39;chatid-cta&#39;</span>,
+  <span class="dt">settings</span>: {
+    <span class="dt">template</span>: <span class="st">&quot;&lt;button data-ref=&#39;button&#39;&gt;Chat with &lt;%= this.label %&gt;&lt;/button&gt;&quot;</span>
+  }
+});</code></pre>
+<p><a href="https://s3.amazonaws.com/chatid-mojo/g/context/docs-cta/index.html">View demo</a></p>
+<h2 id="logging-events-1"><span class="header-section-number">5.3</span> Logging Events</h2>
+<h4 id="events.log"><span class="header-section-number">5.3.0.1</span> events.log</h4>
+<p>CID(‘<strong>events.log</strong>’, <em>eventName</em>, <em>args…</em>)</p>
+<p>Log events for collecting metrics and analytics. <code>eventName</code> will be the key for which<br />this unique behavior will be indexed. <code>args</code> may be any number of additional arguments<br />relevant to the event.</p>
+<h4 id="events.log---product"><span class="header-section-number">5.3.0.2</span> events.log - product</h4>
+<p>CID(‘<strong>events.log</strong>’, ‘<strong>product</strong>’, <em>productData</em>)</p>
+<p>Here is an example using the <code>events.log</code> method to send Chatbar metadata on a PDP:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(<span class="st">&#39;events.log&#39;</span>, <span class="st">&#39;product&#39;</span>, {
+  <span class="dt">brand</span>: <span class="st">&#39;Seagate&#39;</span>, <span class="co">// brand name</span>
+  <span class="dt">merchant_sku</span>: <span class="st">&#39;654321&#39;</span>, <span class="co">// retailer-specific SKU</span>
+  <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>, <span class="co">// vendor-provided model number/identifier</span>
+  <span class="dt">name</span>: <span class="st">&#39;500GB External HDD&#39;</span>, <span class="co">// product name</span>
+  <span class="dt">sale_price</span>: <span class="st">&#39;38.99&#39;</span>, <span class="co">// current product price (sale price if it&#39;s on sale)</span>
+  <span class="dt">unit_price</span>: <span class="st">&#39;43.99&#39;</span>, <span class="co">// base product price (opposed to sale price)</span>
+  <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>, <span class="co">// currency for price</span>
+  <span class="dt">tags</span>: [<span class="st">&#39;Computer Hardware&#39;</span>, <span class="st">&#39;Hard Drives&#39;</span>, <span class="st">&#39;Internal Hard Drives&#39;</span>] <span class="co">// an array of tags that describe the product</span>
+});</code></pre>
+<h4 id="events.log---conversion"><span class="header-section-number">5.3.0.3</span> events.log - conversion</h4>
+<p>CID(‘<strong>events.log</strong>’, ‘<strong>conversion</strong>’, <em>productData1</em>, <em>productData2</em>, …)</p>
+<p>Here is an example using the <code>events.log</code> method to send Chatbar a conversion event:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="fu">CID</span>(
+  <span class="st">&#39;events.log&#39;</span>, <span class="co">// 1st param is the API method, in this case it&#39;s &#39;events.log&#39;</span>
+  <span class="st">&#39;conversion&#39;</span>, <span class="co">// 2nd param is first argument to the &#39;events.log&#39; method, in this case it&#39;s &#39;conversion&#39;</span>
+  { <span class="co">// 3rd param is the 2nd argument to the &#39;events.log&#39; method, in this case, the 1st of 2 products purchased</span>
+    <span class="dt">brand</span>: <span class="st">&#39;Acer&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;123456&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;Aspire A7&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;349.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>,
+    <span class="dt">tags</span>: [<span class="st">&#39;PCs &amp; Laptops&#39;</span>, <span class="st">&#39;Laptops&#39;</span>]
+  }, { <span class="co">// etc</span>
+    <span class="dt">brand</span>: <span class="st">&#39;Seagate&#39;</span>,
+    <span class="dt">merchant_sku</span>: <span class="st">&#39;654321&#39;</span>,
+    <span class="dt">model</span>: <span class="st">&#39;ABCDEF&#39;</span>,
+    <span class="dt">name</span>: <span class="st">&#39;500GB External HDD&#39;</span>,
+    <span class="dt">quantity</span>: <span class="dv">1</span>,
+    <span class="dt">sale_price</span>: <span class="st">&#39;38.99&#39;</span>,
+    <span class="dt">unit_price</span>: <span class="st">&#39;43.99&#39;</span>,
+    <span class="dt">currency</span>: <span class="st">&#39;USD&#39;</span>,
+    <span class="dt">tags</span>: [<span class="st">&#39;Computer Hardware&#39;</span>, <span class="st">&#39;Hard Drives&#39;</span>, <span class="st">&#39;Internal Hard Drives&#39;</span>]
+  }
+);</code></pre>
+<p><strong>HINT:</strong> for the <code>'conversion'</code> event, product objects should follow the same structure<br />as used with the ‘product’ event, with the addition of the <code>quantity</code> field.</p>
+<p>If this snippet were to be placed on your site’s confirmation page, ChatID would be able<br />to associate the purchase with any chats this user may have participated in during his or<br />her shopping experience.</p>
+<h1 id="demos"><span class="header-section-number">6</span> Demos</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Examples">Examples</a> ▸ <strong>Demos</strong></p>
+</blockquote>
+<h2 id="chat-with-echo"><span class="header-section-number">6.1</span> Chat with Echo</h2>
+<p>In this example, we populate the Experts List with Echo the ChatID robot.</p>
+<pre><code>&lt;div id=&#39;chatid-cta&#39;&gt;&lt;/div&gt;
+&lt;script&gt;
+CID(&#39;chatids.add&#39;, &#39;demo.chatid.echo&#39;); // optional as `ctas.insert` will do this for us.
+CID(&#39;ctas.insert&#39;, {
+  chatid: &#39;demo.chatid.echo&#39;,
+  container: &#39;#chatid-cta&#39;
+});
+&lt;/script&gt;</code></pre>
+<p><a href="http://demo.chatid.com/chatbar/docs-echo/index.html">View example</a></p>
+<h2 id="provide-a-dynamic-template-for-the-cta"><span class="header-section-number">6.2</span> Provide a dynamic template for the CTA</h2>
+<p>In this example, we generate the CTA message dynamically, referencing <code>this.label</code> from<br />the template string. The <code>template</code> field may be an EJS template for displaying the brand<br />name dynamically.</p>
+<pre><code>&lt;div id=&#39;chatid-cta&#39;&gt;&lt;/div&gt;
+&lt;script&gt;
+CID(&#39;ctas.insert&#39;, {
+  chatid: &#39;demo.chatid.echo&#39;,
+  container: &#39;#chatid-cta&#39;,
+  settings: {
+    template: &quot;&lt;button data-ref=&#39;button&#39;&gt;Chat with &lt;%= this.label %&gt;&lt;/button&gt;&quot;
+  }
+});
+&lt;/script&gt;</code></pre>
+<p><a href="http://demo.chatid.com/chatbar/docs-cta/index.html">View example</a></p>
+<h2 id="add-experts-by-mapping-a-brand-to-its-chatid"><span class="header-section-number">6.3</span> Add experts by mapping a brand to it’s chatid</h2>
+<p>In this example, we populate the Experts List by mapping a brand name to it’s <code>chatid</code>.<br />Then we add the chatid and corresponding CTA. Notice the use of a callback function for<br />getting the result of the first API call to accommodate async flow:</p>
+<pre><code>&lt;div id=&#39;chatid-cta&#39;&gt;&lt;/div&gt;
+&lt;script&gt;
+CID(&#39;chatids.lookup.byBrand&#39;, &#39;iBUYPOWER&#39;, function(chatid) {
+  CID(&#39;ctas.insert&#39;, {
+    chatid: chatid,
+    container: &#39;#chatid-cta&#39;,
+    settings: {
+      template: &quot;Have product questions? &lt;button data-ref=&#39;button&#39;&gt;&lt;img src=&#39;https://s3.amazonaws.com/chatid-mojo/g/assets/newegg/bubble-green.png&#39; /&gt; Chat with iBUYPOWER&lt;/button&gt;&quot;
+    }
+  });
+});
+&lt;/script&gt;</code></pre>
+<p><a href="http://demo.chatid.com/chatbar/docs-map-brand/index.html">View example</a></p>
+<h1 id="screenshots"><span class="header-section-number">7</span> Screenshots</h1>
+<blockquote>
+<p><a href="index.md">Home</a> ▸ <a href="index.md#Examples">Examples</a> ▸ <strong>Screenshots</strong></p>
+</blockquote>
+<p>Open the first screenshot and toggle through the flow using your arrow keys.</p>
+<h3 id="for-retailers"><span class="header-section-number">7.0.1</span> For retailers</h3>
+<p><img src="assets/screens/screen01.png" title="Call to action (CTA) displayed on product detail page (PDP)" /><br /><img src="assets/screens/screen02.png" title="CTA clicked" /><br /><img src="assets/screens/screen03.png" title="Chat initiated with Acer" /><br /><img src="assets/screens/screen04.png" title="Agent typing notifications display" /><br /><img src="assets/screens/screen05.png" title="Typing notifications display in minimized state" /><br /><img src="assets/screens/screen06.png" title="Unread message notification displays" /><br /><img src="assets/screens/screen07.png" title="Collapse entire bar, message notification persists" /><br /><img src="assets/screens/screen08.png" title="Chatbar persists from page to page, click the notification to view the new message" /><br /><img src="assets/screens/screen09.png" title="Click the X to end chat" /><br /><img src="assets/screens/screen10.png" title="Confirm and close" /><br /><img src="assets/screens/screen11.png" title="Chat history accessible from Experts List" /></p>
+</body>
+</html>

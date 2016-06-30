@@ -1,10 +1,10 @@
 Public API Overview
 ===================
 
-> [Home](index.md) ▸ [Public API](index.md#Public_API) ▸ **Overview**
+> [Home]() ▸ [Public API](#Public_API) ▸ **Overview**
 
 For further documentation, please visit the
-[complete API reference](public-api-reference.md).
+[complete API reference]().
 
 Basics
 ------
@@ -47,7 +47,7 @@ The Experts List (also known as the Buddy List) is a panel within Chatbar that d
 the experts available for chat. Upon starting a chat, the expert will remain in the List
 for the duration of the user's session, with a clock icon to indicate chat history:
 
-![](./assets/screens/screen11.png "Experts List with just one ChatID (Acer)")
+![](#./assets/screens/screen11.png "Experts List with just one ChatID (Acer)")
 
 As a user browses your website, the List may update to display relevant experts. Chatbar
 provides a few strategies for performing these updates.
@@ -59,7 +59,7 @@ and pass it as the first argument:
 CID('chatids.add', 'acer');
 ```
 
-*Reference*: [chatids.add](public-api-reference.md#chatids.add)
+*Reference*: [chatids.add](#chatids.add)
 
 Configuring CTAs
 ----------------
@@ -79,7 +79,7 @@ CID('ctas.insert', {
 
 `ctas.insert` will call `chatids.add` internally if you haven't done so already.
 
-*Reference*: [ctas.insert](public-api-reference.md#ctas.insert)
+*Reference*: [ctas.insert](#ctas.insert)
 
 **NOTE:** CTAs will not display unless experts are online and available for chat.
 Currently, there is no mechanism for checking expert availability via the public API, so
@@ -116,10 +116,10 @@ CID('events.log', 'conversion', {
 );
 ```
 
-*Reference*: [events.log](public-api-reference.md#events.log)
+*Reference*: [events.log](#events.log)
 
 #### Next
 
-* Are you a retailer? [Retailer Implementation Guide](retailer-implementation.md)
-* Dig deeper with the [API Reference](public-api-reference.md)
-* Browse [Examples](demos.md)
+* Are you a retailer? [Retailer Implementation Guide]()
+* Dig deeper with the [API Reference]()
+* Browse [Examples]()
